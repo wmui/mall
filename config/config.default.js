@@ -20,7 +20,25 @@ module.exports = appInfo => {
 
   // add your user config here
   const userConfig = {
-    // myAppName: 'egg',
+    view: {
+      mapping: {
+        '.html': 'nunjucks',
+        defaultExtension: '.html',
+      },
+    },
+    mongoose: {
+      client: {
+        url: 'mongodb://127.0.0.1/mall',
+        options: {},
+      },
+    },
+    session: {
+      key: 'SESSION_ID',
+      maxAge: 864000,
+      httpOnly: true,
+      encrypt: true,
+      renew: true,
+    },
   };
 
   return {
