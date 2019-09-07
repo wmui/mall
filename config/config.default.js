@@ -30,6 +30,7 @@ module.exports = appInfo => {
       client: {
         url: 'mongodb://127.0.0.1/mall',
         options: {},
+        plugins: [],
       },
     },
     session: {
