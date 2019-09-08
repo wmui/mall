@@ -25,9 +25,9 @@ class AccessController extends BaseController {
   }
 
   async add() {
-    const list = await this.ctx.model.Access.find({ module_id: 0 });
+    const modules = await this.ctx.model.Access.find({ module_id: 0 });
     await this.ctx.render('admin/access/add', {
-      list,
+      modules,
     });
   }
 
@@ -46,11 +46,11 @@ class AccessController extends BaseController {
   async edit() {
     const id = this.ctx.request.query.id;
     // 获取编辑的数据
-    const item = await this.ctx.model.Access.findOne({ _id: id });
-    const list = await this.ctx.model.Access.find({ module_id: 0 });
+    const access = await this.ctx.model.Access.findOne({ _id: id });
+    const modules = await this.ctx.model.Access.find({ module_id: 0 });
     await this.ctx.render('admin/access/edit', {
-      item,
-      list,
+      access,
+      modules,
     });
   }
 

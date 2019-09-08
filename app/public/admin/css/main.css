@@ -1,0 +1,36 @@
+.login {
+  width: 350px;
+  margin: 100px auto;
+}
+
+.login input {
+  margin-bottom: 20px;
+}
+
+.login .input-group-addon {
+  padding: 0
+}
+
+.layout {
+  display: flex;
+  padding: 20px;
+}
+
+.layout .aside {
+  width: 250px;
+  margin-right: 20px;
+}
+
+.layout .content {
+  flex: 1;
+}
+
+.main-input {
+  margin-bottom: 20px;
+}
+
+/* reset */
+
+.navbar {
+  border-radius: 0;
+}

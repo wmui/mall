@@ -1,0 +1,58 @@
+{% extends "../public/layout.html" %}
+
+{% block layout %}
+<form action="/admin/access/doAdd" method="post">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <input type="hidden" name="_csrf" value="{{csrf}}">
+
+      <div class="main-input">
+        <span>模块名称</span>
+        <input type="text" name="module_name" class="form-control">
+      </div>
+
+      <div class="main-input">
+        <span>节点类型</span>
+        <select name="type">
+          <option value="1">模块</option>
+          <option value="2">菜单</option>
+          <option value="3">操作</option>
+        </select>
+      </div>
+
+
+      <div class="main-input">
+        <span>操作名称</span>
+        <input type="text" name="action_name" class="form-control">
+      </div>
+
+
+      <div class="main-input">
+        <span>操作地址</span>
+        <input type="text" name="url" class="form-control">
+      </div>
+
+      <div class="main-input">
+        <span>所属模块</span>
+        <select name="role_id">
+          <option value="0">--顶级模块--</option>
+          {% for item in modules %}
+          <option value="{{item._id}}">{{ item.title }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="main-input">
+        <span>排序</span>
+        <input type="text" name="sort" class="form-control">
+      </div>
+
+      <div class="main-input">
+        <span>描述</span>
+        <textarea type="text" name="description" class="form-control"></textarea>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">提交</button>
+</form>
+{% endblock %}

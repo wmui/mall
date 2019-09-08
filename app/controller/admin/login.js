@@ -8,14 +8,16 @@ class LoginController extends BaseController {
   }
 
   async doLogin() {
-    const { username, password, code } = this.ctx.body;
+
+    const { username, password, code } = this.ctx.request.body;
 
     if (code.toUpperCase() !== this.ctx.session.code.toUpperCase()) {
       return await this.error('/admin/login', '验证码错误');
     }
 
-    const user = await this.ctx.model.Admin.findOne({ username, password });
+    const user = await this.ctx.model.Manager.findOne({ username, password });
     if (!user) return await this.error('/admin/login', '用户名或密码错误');
+    this.ctx.session.userinfo = user;
     this.ctx.redirect('/admin/manager');
   }
 

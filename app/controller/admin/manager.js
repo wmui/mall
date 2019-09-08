@@ -4,7 +4,7 @@ const BaseController = require('./base.js');
 
 class ManagerController extends BaseController {
   async index() {
-    const list = await this.ctx.model.Manager.aggregate([
+    const managers = await this.ctx.model.Manager.aggregate([
       {
         $lookup: {
           from: 'role',
@@ -14,12 +14,12 @@ class ManagerController extends BaseController {
         },
       },
     ]);
-    await this.ctx.render('admin/manager/index', { list });
+    await this.ctx.render('admin/manager/index', { managers });
   }
 
   async add() {
-    const list = await this.ctx.model.Role.find();
-    await this.ctx.render('admin/manager/add', { list });
+    const roles = await this.ctx.model.Role.find();
+    await this.ctx.render('admin/manager/add', { roles });
   }
 
   async doAdd() {
@@ -43,7 +43,7 @@ class ManagerController extends BaseController {
   }
 
   async doEdit() {
-    const { id, password, ...rest } = this.ctx.body;
+    const { id, password, ...rest } = this.ctx.request.body;
     const { Manager } = this.ctx.model;
     if (password) {
       await Manager.updateOne({ _id: id }, { password, ...rest });

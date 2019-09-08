@@ -20,21 +20,21 @@ class RoleController extends BaseController {
 
   async edit() {
     const { id } = this.ctx.query;
-    const item = await this.ctx.model.Role.findOne({ _id: id });
-    await this.ctx.render('admin/role/edit', { item });
+    const role = await this.ctx.model.Role.findOne({ _id: id });
+    await this.ctx.render('admin/role/edit', { role });
   }
 
   async doEdit() {
-    const { id, ...rest } = this.ctx.body;
+    const { id, ...rest } = this.ctx.request.body;
     await this.ctx.model.Role.updateOne({ _id: id }, { ...rest });
     await this.success('/admin/role', '编辑角色成功');
   }
 
   async auth() {
     const { role_id } = this.ctx.request.query;
-    const list = await this.service.admin.getAuthList(role_id);
+    const access = await this.service.manager.getAuthList(role_id);
     await this.ctx.render('admin/role/auth', {
-      list,
+      access,
       role_id,
     });
   }

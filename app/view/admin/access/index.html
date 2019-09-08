@@ -1,0 +1,47 @@
+{% extends "../public/layout.html" %}
+
+{% block layout %}
+<div class="panel panel-default">
+  <div class="panel-body">
+    <table class="table">
+      <tr>
+        <th>模块名称</th>
+        <th>节点类型</th>
+        <th>操作名称</th>
+        <th>操作地址</th>
+        <th>权限排序</th>
+        <th>权限描述</th>
+        <th>操作</th>
+      </tr>
+      {% for item in access%}
+      <tr>
+        <td>{{ item.module_name }}</td>
+        <td>{{ item.type }}</td>
+        <td>{{ item.action_name }}</td>
+        <td>{{ item.url }}</td>
+        <td>{{ item.sort }}</td>
+        <td>{{ item.description }}</td>
+        <td>
+          <a href="/admin/access/edit?id={{item._id}}">修改</a>　　
+        </td>
+      </tr>
+
+      {% for node in item.items %}
+      <tr>
+        <td>⌊-{{ node.module_name }}</td>
+        <td>⌊-{{ node.type }}</td>
+        <td>⌊-{{ node.action_name }}</td>
+        <td>⌊-{{ node.url }}</td>
+        <td>⌊-{{ node.sort }}</td>
+        <td>⌊-{{ node.description }}</td>
+        <td>
+          <a href="/admin/access/edit?id={{node._id}}">修改</a>　
+          <a href="/admin/delete?id={{node._id}}&model=Access">删除</a>　　　
+        </td>
+      </tr>
+      {% endfor %}
+      {% endfor %}
+    </table>
+  </div>
+</div>
+{% endblock %}
