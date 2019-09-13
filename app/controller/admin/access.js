@@ -27,6 +27,7 @@ class AccessController extends BaseController {
 
   async add() {
     const modules = await this.ctx.model.Access.find({ module_id: 0 });
+    modules.unshift({ _id: 0, module_name: '--顶级模块--' });
     await this.ctx.render('admin/access/add', {
       modules,
     });

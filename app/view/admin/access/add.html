@@ -9,7 +9,6 @@
       <div class="main-input">
         <span>所属模块</span>
         <select name="module_id">
-          <option value="0">--顶级模块--</option>
           {% for item in modules %}
           <option value="{{item._id}}">{{ item.module_name }}</option>
           {% endfor %}

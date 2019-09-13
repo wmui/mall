@@ -1,0 +1,50 @@
+{% extends "../public/layout.html" %}
+
+{% block layout %}
+
+<form action="/admin/focus/doEdit?_csrf={{csrf}}" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="id" value="{{ focus._id }}">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="main-input">
+        <span>分类</span>
+        <select name="type">
+          <option value="1" {% if focus.type == 1 %}selected{% endif %}>网站</option>
+          <option value="2" {% if focus.type == 2 %}selected{% endif %}>APP</option>
+          <option value="3" {% if focus.type == 3 %}selected{% endif %}>小程序</option>
+        </select>
+      </div>
+
+      <div class="main-input">
+        <span>名称</span>
+        <input type="text" name="title" class="form-control" value="{{focus.title}}">
+      </div>
+
+      <div class="main-input">
+        <span>链接地址</span>
+        <input type="text" name="link" class="form-control" value="{{focus.link}}">
+      </div>
+
+
+      <div class="main-input">
+        <span>轮播图</span>
+        <input type="file" name="focus_img" class="form-control">
+      </div>
+
+      <img src="{{focus.focus_img}}" alt="" width="150px">
+
+      <div class="main-input">
+        <span>排序</span>
+        <input type="text" name="sort" class="form-control" value="{{focus.sort}}">
+      </div>
+
+      <div class="main-input">
+        <span>状态</span>
+        <input type="radio" name="status" value="1" {% if focus.status == 1 %}checked{% endif %}>显示
+        <input type="radio" name="status" value="0" {% if focus.status == 0 %}checked{% endif %}>隐藏
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">提交</button>
+</form>
+{% endblock %}

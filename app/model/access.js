@@ -37,10 +37,10 @@ module.exports = app => {
       default: 1,
     },
   }, {
-      timestamps: {
-        createdAt: 'created_at',
-        updatedAt: 'updated_at',
-      },
-    });
+    timestamps: {
+      createdAt: 'created_at',
+      updatedAt: 'updated_at',
+    },
+  });
   return mongoose.model('Access', AccessSchema, 'access');
 };

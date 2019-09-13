@@ -43,6 +43,10 @@ module.exports = appInfo => {
     adminAuth: {
       match: '/admin',
     },
+    multipart: {
+      fileSize: '50md',
+    },
+    uploadDir: 'app/public/upload',
   };
 
   return {

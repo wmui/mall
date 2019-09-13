@@ -29,6 +29,22 @@
   margin-bottom: 20px;
 }
 
+.main-input span {
+  display: block;
+}
+
+.admin-logo {
+  font-size: 20px;
+  color: #666;
+  line-height: 50px;
+  text-decoration: none;
+}
+
+.admin-logo:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
 /* reset */
 
 .navbar {
