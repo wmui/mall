@@ -1,12 +1,17 @@
 'use strict';
 
+$(function () {
+  app.init()
+})
 
-function getNodeName(type) {
-  var maps = {
-    1: '模块',
-    2: '菜单',
-    3: '操作',
-  };
+var app = {
+  init: function () {
+    this.deleteConfirm()
+  },
 
-  return maps[type];
+  deleteConfirm: function () {
+    $('#delete').click(function () {
+      return confirm('确定删除吗')
+    })
+  }
 }

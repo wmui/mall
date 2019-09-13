@@ -22,7 +22,7 @@
         <td>
           {% if not item.is_super %}
           <a href="/admin/manager/edit?id={{item._id}}">修改</a>　　
-          <a href="/admin/delete?id={{item._id}}&model=Manager">删除</a>
+          <a href="/admin/delete?id={{item._id}}&model=Manager" id="delete">删除</a>
           {% endif %}
         </td>
       </tr>

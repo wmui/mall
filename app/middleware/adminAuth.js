@@ -11,7 +11,7 @@ module.exports = () => {
 
     if (ignorePath.includes(pathname)) return await next();
 
-    if (!ctx.session.userinfo) return (ctx.body = '您没有访问权限');
+    if (!ctx.session.userinfo) return ctx.redirect('/admin/login');
     // 路径和权限判断
     ctx.locals.userinfo = ctx.session.userinfo;
 
