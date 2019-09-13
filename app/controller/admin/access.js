@@ -4,7 +4,7 @@ const BaseController = require('./base.js');
 
 class AccessController extends BaseController {
   async index() {
-    const list = await this.ctx.model.Access.aggregate([
+    const access = await this.ctx.model.Access.aggregate([
       {
         $lookup: {
           from: 'access',
@@ -15,12 +15,13 @@ class AccessController extends BaseController {
       },
       {
         $match: {
-          module_id: '0',
+          module_id: 0,
         },
       },
     ]);
+
     await this.ctx.render('admin/access/index', {
-      list,
+      access,
     });
   }
 
@@ -32,13 +33,15 @@ class AccessController extends BaseController {
   }
 
   async doAdd() {
-    const { body } = this.ctx;
+    const { body } = this.ctx.request;
 
-    if (String(body.module_id) !== '0') {
+    if (body.module_id === '0') {
+      body.module_id = 0;
+    } else {
       body.module_id = this.app.mongoose.Types.ObjectId(body.module_id);
     }
-
     await new this.ctx.model.Access(body).save();
+
     await this.success('/admin/access', '增加权限成功');
   }
 
@@ -48,6 +51,8 @@ class AccessController extends BaseController {
     // 获取编辑的数据
     const access = await this.ctx.model.Access.findOne({ _id: id });
     const modules = await this.ctx.model.Access.find({ module_id: 0 });
+    modules.unshift({ _id: 0, module_name: '--顶级模块--' });
+
     await this.ctx.render('admin/access/edit', {
       access,
       modules,
@@ -56,13 +61,15 @@ class AccessController extends BaseController {
 
 
   async doEdit() {
-    const { body } = this.ctx;
+    const { body } = this.ctx.request;
 
-    if (String(body.module_id) !== '0') {
+    if (body.module_id === '0') {
+      body.module_id = 0;
+    } else {
       body.module_id = this.app.mongoose.Types.ObjectId(body.module_id);
     }
-
     await this.ctx.model.Access.updateOne({ _id: body.id }, body);
+
     await this.success('/admin/access', '修改权限成功');
   }
 }

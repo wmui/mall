@@ -12,7 +12,6 @@
 
 <body>
 
-
   <nav class="navbar navbar-inverse" role="navigation">
     <div class="container-fluid">
       <div class="collapse navbar-collapse">
@@ -30,14 +29,18 @@
 
     <aside class="aside">
       <div class="list-group">
-        <a href="#" class="list-group-item disabled">title</a>
-        <a href="#" class="list-group-item active">
-          Cras justo odio
+        {% for menu in menus %}
+        {% if menu.checked or userinfo.is_super %}
+        <a href="{{menu.url}}" class="list-group-item disabled">{{ menu.module_name }}</a>
+        {% endif %}
+        {% for item in menu.items %}
+        {% if (item.checked or userinfo.is_super) and item.type !== 3 %}
+        <a href="{{ item.url }}" class="list-group-item">
+          {{ item.action_name }}
         </a>
-        <a href="#" class="list-group-item">Dapibus ac facilisis in</a>
-        <a href="#" class="list-group-item">Morbi leo risus</a>
-        <a href="#" class="list-group-item">Porta ac consectetur ac</a>
-        <a href="#" class="list-group-item">Vestibulum at eros</a>
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
       </div>
     </aside>
 

@@ -4,8 +4,8 @@ const BaseController = require('./base.js');
 
 class RoleController extends BaseController {
   async index() {
-    const list = await this.ctx.model.Role.find();
-    await this.ctx.render('admin/role/index', { list });
+    const roles = await this.ctx.model.Role.find();
+    await this.ctx.render('admin/role/index', { roles });
   }
 
   async add() {
@@ -13,7 +13,7 @@ class RoleController extends BaseController {
   }
 
   async doAdd() {
-    const { body } = this.ctx;
+    const { body } = this.ctx.request;
     await new this.ctx.model.Role(body).save();
     await this.success('/admin/role', '增加角色成功');
   }
@@ -33,6 +33,8 @@ class RoleController extends BaseController {
   async auth() {
     const { role_id } = this.ctx.request.query;
     const access = await this.service.manager.getAuthList(role_id);
+
+
     await this.ctx.render('admin/role/auth', {
       access,
       role_id,
@@ -42,6 +44,7 @@ class RoleController extends BaseController {
   async doAuth() {
     const { RoleAccess } = this.ctx.model;
     const { role_id, access_node } = this.ctx.request.body;
+
     // 1、删除当前角色下面的所有权限
     await RoleAccess.deleteMany({ role_id });
     // 2、给role_access增加数据 把获取的权限和角色增加到数据库

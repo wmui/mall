@@ -1,22 +1,37 @@
 {% extends "../public/layout.html" %}
 
 {% block layout %}
-<form action="/admin/access/doAdd" method="post">
+
+<form action="/admin/access/doEdit" method="post">
   <div class="panel panel-default">
     <div class="panel-body">
       <input type="hidden" name="_csrf" value="{{csrf}}">
+      <input type="hidden" name="id" value="{{access._id}}">
+
+      <div class="main-input">
+        <span>所属模块</span>
+        <select name="module_id">
+          {% for item in modules %}
+          {% if item._id.toString() === access.module_id.toString() %}
+          <option value="{{item._id}}" selected>{{ item.module_name }}</option>
+          {% else %}
+          <option value="{{item._id}}">{{ item.module_name }}</option>
+          {% endif %}
+          {% endfor %}
+        </select>
+      </div>
 
       <div class="main-input">
         <span>模块名称</span>
-        <input type="text" value="{{access.module_name}}" class="form-control">
+        <input type="text" value="{{access.module_name}}" name="module_name" class="form-control">
       </div>
 
       <div class="main-input">
         <span>节点类型</span>
-        <select value="{{access.type}}">
-          <option value="1">模块</option>
-          <option value="2">菜单</option>
-          <option value="3">操作</option>
+        <select name="type">
+          <option value="1" {% if access.type === 1 %}selected{% endif %}>模块</option>
+          <option value="2" {% if access.type === 2 %}selected{% endif %}>菜单</option>
+          <option value="3" {% if access.type === 3 %}selected{% endif %}>操作</option>
         </select>
       </div>
 
@@ -32,15 +47,6 @@
         <input type="text" name="url" value="{{access.url}}" class="form-control">
       </div>
 
-      <div class="main-input">
-        <span>所属模块</span>
-        <select name="module_name">
-          <option value="0">--顶级模块--</option>
-          {% for item in modules %}
-          <option value="{{item._id}}">{{ item.title }}</option>
-          {% endfor %}
-        </select>
-      </div>
 
       <div class="main-input">
         <span>排序</span>

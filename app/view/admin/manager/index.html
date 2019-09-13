@@ -16,7 +16,7 @@
         <td>{{ item.username }}</td>
         <td>{{ item.mobile }}</td>
         <td>{{ item.email }}</td>
-        <td>{{ role.title }}</td>
+        <td>{{ item.role[0].title }}</td>
         <td>
           <a href="/admin/manager/edit?id={{item._id}}">修改</a>　　
           <a href="/admin/delete?id={{item._id}}&model=Manager">删除</a>

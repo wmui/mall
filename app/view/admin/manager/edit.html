@@ -6,7 +6,7 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <input type="hidden" name="_csrf" value="{{csrf}}">
-
+      <input type="hidden" name="id" value="{{manager._id}}">
       <div class="main-input">
         <span>管理员用户名</span>
         <input type="text" name="username" class="form-control" value="{{manager.username}}">
@@ -31,11 +31,19 @@
 
       <div class="main-input">
         <span>管理员角色</span>
-        {% for item in roles %}
         <select name="role_id">
-          <option value="{{item._id}}" selected="{{ manager.role_id}}">{{ item.title }}</option>
+          {% for item in roles %}
+          {% if item._id.toString() === manager.role_id.toString() %}
+          <option value="{{item._id}}" selected>
+            {{ item.title }}
+          </option>
+          {% else %}
+          <option value="{{item._id}}">
+            {{ item.title }}
+          </option>
+          {% endif %}
+          {% endfor %}
         </select>
-        {% endfor %}
       </div>
     </div>
   </div>

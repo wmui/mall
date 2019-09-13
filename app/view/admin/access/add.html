@@ -1,10 +1,20 @@
 {% extends "../public/layout.html" %}
 
 {% block layout %}
+
 <form action="/admin/access/doAdd" method="post">
   <div class="panel panel-default">
     <div class="panel-body">
       <input type="hidden" name="_csrf" value="{{csrf}}">
+      <div class="main-input">
+        <span>所属模块</span>
+        <select name="module_id">
+          <option value="0">--顶级模块--</option>
+          {% for item in modules %}
+          <option value="{{item._id}}">{{ item.module_name }}</option>
+          {% endfor %}
+        </select>
+      </div>
 
       <div class="main-input">
         <span>模块名称</span>
@@ -32,15 +42,7 @@
         <input type="text" name="url" class="form-control">
       </div>
 
-      <div class="main-input">
-        <span>所属模块</span>
-        <select name="role_id">
-          <option value="0">--顶级模块--</option>
-          {% for item in modules %}
-          <option value="{{item._id}}">{{ item.title }}</option>
-          {% endfor %}
-        </select>
-      </div>
+
 
       <div class="main-input">
         <span>排序</span>

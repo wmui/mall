@@ -28,12 +28,12 @@
 
       {% for node in item.items %}
       <tr>
-        <td>⌊-{{ node.module_name }}</td>
-        <td>⌊-{{ node.type }}</td>
-        <td>⌊-{{ node.action_name }}</td>
-        <td>⌊-{{ node.url }}</td>
-        <td>⌊-{{ node.sort }}</td>
-        <td>⌊-{{ node.description }}</td>
+        <td>&lfloor; {{ node.module_name }}</td>
+        <td>&lfloor; {{ node.type }}</td>
+        <td>&lfloor; {{ node.action_name }}</td>
+        <td>&lfloor; {{ node.url }}</td>
+        <td>&lfloor; {{ node.sort }}</td>
+        <td>&lfloor; {{ node.description }}</td>
         <td>
           <a href="/admin/access/edit?id={{node._id}}">修改</a>　
           <a href="/admin/delete?id={{node._id}}&model=Access">删除</a>　　　

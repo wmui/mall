@@ -3,6 +3,7 @@ const url = require('url');
 const Service = require('egg').Service;
 
 class ManagerService extends Service {
+  // check router view access
   async checkAuth() {
     const { is_super, role_id } = this.ctx.session.userinfo;
     const { RoleAccess, Access } = this.ctx.model;
@@ -10,11 +11,11 @@ class ManagerService extends Service {
     if (pathname === '/admin/logout' || is_super) return true;
 
     // 获取权限列表
-    const list = await RoleAccess.find({ role_id }).select('access_id');
-    const accessList = list.map(item => item.toString());
-    const accessId = await Access.findOne({ url: pathname }).select('_id');
+    const list = await RoleAccess.find({ role_id });
+    const accessList = list.map(item => item.access_id.toString());
+    const access = await Access.findOne({ url: pathname });
 
-    if (accessList.includes(accessId.toString())) return true;
+    if (accessList.includes(access._id.toString())) return true;
     return false;
   }
 
@@ -37,8 +38,8 @@ class ManagerService extends Service {
       },
     ]);
 
-    const list = await RoleAccess.find({ role_id }).select('access_id');
-    const accessList = list.map(item => item.toString());
+    const list = await RoleAccess.find({ role_id });
+    const accessList = list.map(item => item.access_id.toString());
 
     // 把可访问菜单设置为true
     return result.map(item => {

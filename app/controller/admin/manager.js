@@ -14,6 +14,7 @@ class ManagerController extends BaseController {
         },
       },
     ]);
+
     await this.ctx.render('admin/manager/index', { managers });
   }
 
@@ -23,7 +24,7 @@ class ManagerController extends BaseController {
   }
 
   async doAdd() {
-    const { body } = this.ctx;
+    const { body } = this.ctx.request;
     const { Manager } = this.ctx.model;
     const user = await Manager.findOne({ username: body.username });
     if (user) return await this.error('/admin/manager/add', '该管理员已存在');
@@ -45,6 +46,7 @@ class ManagerController extends BaseController {
   async doEdit() {
     const { id, password, ...rest } = this.ctx.request.body;
     const { Manager } = this.ctx.model;
+
     if (password) {
       await Manager.updateOne({ _id: id }, { password, ...rest });
     } else {

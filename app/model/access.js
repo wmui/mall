@@ -14,7 +14,7 @@ module.exports = app => {
     }, // 1、表示模块   2、表示菜单   3、操作
     action_name: {
       type: String,
-      required: true,
+      default: '',
     }, // 如果type是模块，操作名称就是子菜单的名称。如果是操作，就是具体的操作名称
     url: {
       type: String,
@@ -37,10 +37,10 @@ module.exports = app => {
       default: 1,
     },
   }, {
-    timestamps: {
-      createdAt: 'created_at',
-      updatedAt: 'updated_at',
-    },
-  });
+      timestamps: {
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
+      },
+    });
   return mongoose.model('Access', AccessSchema, 'access');
 };

@@ -35,7 +35,7 @@ module.exports = appInfo => {
     },
     session: {
       key: 'SESSION_ID',
-      maxAge: 864000,
+      maxAge: 864000 * 1000,
       httpOnly: true,
       encrypt: true,
       renew: true,

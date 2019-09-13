@@ -10,6 +10,7 @@ module.exports = () => {
     const pathname = url.parse(ctx.request.url).pathname;
 
     if (ignorePath.includes(pathname)) return await next();
+
     if (!ctx.session.userinfo) return (ctx.body = '您没有访问权限');
     // 路径和权限判断
     ctx.locals.userinfo = ctx.session.userinfo;
@@ -20,6 +21,8 @@ module.exports = () => {
     // 验证通过，获取可访问菜单列表
     const { role_id } = ctx.session.userinfo;
     ctx.locals.menus = await ctx.service.manager.getAuthList(role_id);
+    console.log(ctx.locals.menus);
+
     await next();
   };
 };
