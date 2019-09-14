@@ -2,15 +2,36 @@
 
 {% block layout %}
 
-<form action="/admin/goodsCate/doAdd?_csrf={{csrf}}" method="post">
+<form action="/admin/focus/doAdd?_csrf={{csrf}}" method="post" enctype="multipart/form-data">
   <div class="panel panel-default">
     <div class="panel-heading">新增轮播图</div>
+
     <div class="panel-body">
+      <div class="main-input">
+        <span>分类</span>
+        <select name="type">
+          <option value="1">网站</option>
+          <option value="2">APP</option>
+          <option value="3">小程序</option>
+        </select>
+      </div>
 
       <div class="main-input">
         <span>名称</span>
         <input type="text" name="title" class="form-control">
       </div>
+
+      <div class="main-input">
+        <span>链接地址</span>
+        <input type="text" name="link" class="form-control">
+      </div>
+
+
+      <div class="main-input">
+        <span>轮播图</span>
+        <input type="file" name="focus_img">
+      </div>
+
 
       <div class="main-input">
         <span>排序</span>
@@ -23,7 +44,6 @@
         <input type="radio" name="status" value="0">隐藏
       </div>
     </div>
-  </div>
-  <button type="submit" class="btn btn-primary">提交</button>
+    <button type="submit" class="btn btn-primary">提交</button>
 </form>
 {% endblock %}
