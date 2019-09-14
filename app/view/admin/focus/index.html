@@ -3,32 +3,30 @@
 {% block layout %}
 <div class="panel panel-default">
   <div class="panel-heading">轮播图管理</div>
-  <div class="panel-body">
-    <table class="table">
-      <tr>
-        <th>名称</th>
-        <th>类型</th>
-        <th>图片</th>
-        <th>地址</th>
-        <th>状态</th>
-        <th>排序</th>
-        <th>操作</th>
-      </tr>
-      {% for item in list%}
-      <tr>
-        <td>{{ item.title }}</td>
-        <td>{{ item.type }}</td>
-        <td><img src="{{ item.focus_img }}" alt="" width="150px"></td>
-        <td>{{ item.link }}</td>
-        <td>{{ item.status }}</td>
-        <td>{{ item.sort }}</td>
-        <td>
-          <a href="/admin/focus/edit?id={{item._id}}">修改</a>　
-          <a href="/admin/delete?id={{item._id}}&model=Focus" id="delete">删除</a>　　
-        </td>
-      </tr>
-      {% endfor %}
-    </table>
-  </div>
+  <table class="table">
+    <tr>
+      <th>名称</th>
+      <th>类型</th>
+      <th>图片</th>
+      <th>地址</th>
+      <th>状态</th>
+      <th>排序</th>
+      <th>操作</th>
+    </tr>
+    {% for item in list%}
+    <tr>
+      <td>{{ item.title }}</td>
+      <td>{{ item.type }}</td>
+      <td><img src="{{ item.focus_img }}" alt="" width="150px"></td>
+      <td>{{ item.link }}</td>
+      <td>{{ item.status }}</td>
+      <td>{{ item.sort }}</td>
+      <td>
+        <a href="/admin/focus/edit?id={{item._id}}">修改</a>　
+        <a href="/admin/delete?id={{item._id}}&model=Focus" id="delete">删除</a>　　
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
 </div>
 {% endblock %}

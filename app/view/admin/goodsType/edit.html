@@ -1,0 +1,23 @@
+{% extends "../public/layout.html" %}
+
+{% block layout %}
+
+<form action="/admin/goodsType/doEdit?_csrf={{csrf}}" method="post">
+  <input type="hidden" name="id" value="{{ goodsType._id }}">
+  <div class="panel-heading">编辑商品类型</div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="main-input">
+        <span>名称</span>
+        <input type="text" name="title" class="form-control" value="{{goodsType.title}}">
+      </div>
+
+      <div class="main-input">
+        <span>描述</span>
+        <textarea name="description" class="form-control">{{ goodsType.description}}</textarea>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">提交</button>
+</form>
+{% endblock %}

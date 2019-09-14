@@ -4,6 +4,7 @@
 
 <form action="/admin/access/doEdit" method="post">
   <div class="panel panel-default">
+    <div class="panel-heading">编辑权限</div>
     <div class="panel-body">
       <input type="hidden" name="_csrf" value="{{csrf}}">
       <input type="hidden" name="id" value="{{access._id}}">
@@ -20,12 +21,6 @@
           {% endfor %}
         </select>
       </div>
-
-      <div class="main-input">
-        <span>模块名称</span>
-        <input type="text" value="{{access.module_name}}" name="module_name" class="form-control">
-      </div>
-
       <div class="main-input">
         <span>节点类型</span>
         <select name="type">
@@ -33,6 +28,10 @@
           <option value="2" {% if access.type === 2 %}selected{% endif %}>菜单</option>
           <option value="3" {% if access.type === 3 %}selected{% endif %}>操作</option>
         </select>
+      </div>
+      <div class="main-input">
+        <span>模块名称</span>
+        <input type="text" value="{{access.module_name}}" name="module_name" class="form-control">
       </div>
 
 
@@ -54,7 +53,7 @@
       </div>
 
       <div class="main-input">
-        <span>描述</span>
+        <span>权限描述</span>
         <textarea type="text" name="description" class="form-control">{{access.description}}</textarea>
       </div>
     </div>

@@ -50,3 +50,9 @@
 .navbar {
   border-radius: 0;
 }
+
+.panel-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

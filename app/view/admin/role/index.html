@@ -4,29 +4,26 @@
 
 <div class="panel panel-default">
   <div class="panel-heading">角色管理</div>
-
-  <div class="panel-body">
-    <table class="table">
-      <tr>
-        <th>角色名称</th>
-        <th>角色描述</th>
-        <th>添加时间</th>
-        <th>操作</th>
-      </tr>
-      {% for item in roles%}
-      <tr>
-        <td>{{ item.title }}</td>
-        <td>{{ item.description }}</td>
-        <td>{{ helper.formatDate(item.created_at) }}</td>
-        <td>
-          <a href="/admin/role/auth?role_id={{item._id}}">授权</a>　
-          <a href="/admin/role/edit?id={{item._id}}">修改</a>　　
-          <a href="/admin/delete?id={{item._id}}&model=Role" id="delete">删除</a>
-        </td>
-      </tr>
-      {% endfor %}
-    </table>
-  </div>
+  <table class="table">
+    <tr>
+      <th>角色名称</th>
+      <th>角色描述</th>
+      <th>添加时间</th>
+      <th>操作</th>
+    </tr>
+    {% for item in roles%}
+    <tr>
+      <td>{{ item.title }}</td>
+      <td>{{ item.description }}</td>
+      <td>{{ helper.formatDate(item.created_at) }}</td>
+      <td>
+        <a href="/admin/role/auth?role_id={{item._id}}">授权</a>　
+        <a href="/admin/role/edit?id={{item._id}}">修改</a>　　
+        <a href="/admin/delete?id={{item._id}}&model=Role" id="delete">删除</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
 </div>
 
 {% endblock %}

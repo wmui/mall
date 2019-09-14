@@ -3,31 +3,28 @@
 {% block layout %}
 <div class="panel panel-default">
   <div class="panel-heading">管理员管理</div>
-
-  <div class="panel-body">
-    <table class="table">
-      <tr>
-        <th>管理员名称</th>
-        <th>管理员电话</th>
-        <th>管理员邮箱</th>
-        <th>管理员角色</th>
-        <th>操作</th>
-      </tr>
-      {% for item in managers%}
-      <tr>
-        <td>{{ item.username }}</td>
-        <td>{{ item.mobile }}</td>
-        <td>{{ item.email }}</td>
-        <td>{{ item.role[0].title }}</td>
-        <td>
-          {% if not item.is_super %}
-          <a href="/admin/manager/edit?id={{item._id}}">修改</a>　　
-          <a href="/admin/delete?id={{item._id}}&model=Manager" id="delete">删除</a>
-          {% endif %}
-        </td>
-      </tr>
-      {% endfor %}
-    </table>
-  </div>
+  <table class="table">
+    <tr>
+      <th>管理员名称</th>
+      <th>管理员电话</th>
+      <th>管理员邮箱</th>
+      <th>管理员角色</th>
+      <th>操作</th>
+    </tr>
+    {% for item in managers%}
+    <tr>
+      <td>{{ item.username }}</td>
+      <td>{{ item.mobile }}</td>
+      <td>{{ item.email }}</td>
+      <td>{{ item.role[0].title }}</td>
+      <td>
+        {% if not item.is_super %}
+        <a href="/admin/manager/edit?id={{item._id}}">修改</a>　　
+        <a href="/admin/delete?id={{item._id}}&model=Manager" id="delete">删除</a>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
 </div>
 {% endblock %}

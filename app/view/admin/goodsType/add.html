@@ -2,25 +2,18 @@
 
 {% block layout %}
 
-<form action="/admin/goodsCate/doAdd?_csrf={{csrf}}" method="post">
+<form action="/admin/goodsType/doAdd?_csrf={{csrf}}" method="post">
   <div class="panel panel-default">
-    <div class="panel-heading">新增轮播图</div>
+    <div class="panel-heading">新增商品类型</div>
     <div class="panel-body">
-
       <div class="main-input">
         <span>名称</span>
         <input type="text" name="title" class="form-control">
       </div>
 
       <div class="main-input">
-        <span>排序</span>
-        <input type="text" name="sort" class="form-control">
-      </div>
-
-      <div class="main-input">
-        <span>状态</span>
-        <input type="radio" name="status" value="1" checked>显示
-        <input type="radio" name="status" value="0">隐藏
+        <span>描述</span>
+        <textarea name="description" class="form-control"></textarea>
       </div>
     </div>
   </div>

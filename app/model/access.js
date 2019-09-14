@@ -6,7 +6,7 @@ module.exports = app => {
   const AccessSchema = new Schema({
     module_name: {
       type: String,
-      required: true,
+      default: '',
     }, // 模块名称或菜单名称
     type: {
       type: Number,

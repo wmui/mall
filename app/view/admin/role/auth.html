@@ -4,27 +4,26 @@
 
 <form action="/admin/role/doAuth" method="post">
   <div class="panel panel-default">
-    <div class="panel-body">
-      <input type="hidden" name="_csrf" value="{{csrf}}">
-      <input type="hidden" name="role_id" value="{{ role_id }}" />
-      <table>
-        {% for item in access %}
-        <tr>
-          <td>
-            <input type="checkbox" name="access_node[]" value="{{item._id}}"
-              {% if item.checked%}checked{% endif %}>{{item.module_name}}
-          </td>
+    <div class="panel-heading">授权管理</div>
+    <input type="hidden" name="_csrf" value="{{csrf}}">
+    <input type="hidden" name="role_id" value="{{ role_id }}" />
+    <table class="table">
+      {% for item in access %}
+      <tr>
+        <td>
+          <input type="checkbox" name="access_node[]" value="{{item._id}}"
+            {% if item.checked%}checked{% endif %}>{{item.module_name}}
+        </td>
 
-          {% for node in item.items %}
-          <td>
-            <input type="checkbox" name="access_node[]" value="{{node._id}}"
-              {% if node.checked%}checked{% endif %}>{{node.action_name}}
-          </td>
-          {% endfor %}
-        </tr>
+        {% for node in item.items %}
+        <td>
+          <input type="checkbox" name="access_node[]" value="{{node._id}}"
+            {% if node.checked%}checked{% endif %}>{{node.action_name}}
+        </td>
         {% endfor %}
-      </table>
-    </div>
+      </tr>
+      {% endfor %}
+    </table>
   </div>
   <button type="submit" class="btn btn-primary">提交</button>
 </form>
