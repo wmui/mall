@@ -46,6 +46,7 @@ module.exports = appInfo => {
     multipart: {
       fileSize: '50mb',
       fileExtensions: [ '.apk', '.tar' ],
+      fields: 30,
     },
     uploadDir: 'app/public/upload',
   };
