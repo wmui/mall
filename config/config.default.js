@@ -44,7 +44,8 @@ module.exports = appInfo => {
       match: '/admin',
     },
     multipart: {
-      fileSize: '50md',
+      fileSize: '50mb',
+      fileExtensions: [ '.apk', '.tar' ],
     },
     uploadDir: 'app/public/upload',
   };

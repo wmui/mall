@@ -12,4 +12,7 @@ run/
 *.un~
 typings/
 .nyc_output/
+
+
 NOTE.md
+app/public/upload/*

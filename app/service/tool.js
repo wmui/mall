@@ -40,15 +40,16 @@ class ToolService extends Service {
     let stream = null;
     let body = {};
     while ((stream = await parts()) !== null) {
-      if (!stream) break;
+      if (!(stream && stream.filename)) break;
       const { filename, fieldname } = stream;
 
       const { uploadDir, saveDir } = await this.createFolder(filename);
 
       const writeStream = await fs.createWriteStream(uploadDir);
       await pump(stream, writeStream);
-      body = Object.assign(body, parts.field, { [fieldname]: saveDir });
+      body = Object.assign(parts.field, { [fieldname]: saveDir });
     }
+    body = Object.assign(body, parts.field);
     return body;
   }
 }
