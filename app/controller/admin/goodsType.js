@@ -19,8 +19,8 @@ class GoodsTypeController extends BaseController {
 
   async edit() {
     const { id } = this.ctx.request.query;
-    const goodsType = await this.ctx.model.GoodsType.findOne({ _id: id });
-    await this.ctx.render('admin/goodsType/edit', { goodsType });
+    const goods_type = await this.ctx.model.GoodsType.findOne({ _id: id });
+    await this.ctx.render('admin/goodsType/edit', { goods_type });
   }
 
   async doEdit() {

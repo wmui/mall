@@ -52,6 +52,10 @@ class ToolService extends Service {
     body = Object.assign(body, parts.field);
     return body;
   }
+
+  objectId(id) {
+    return this.app.mongoose.Types.ObjectId(id);
+  }
 }
 
 module.exports = ToolService;

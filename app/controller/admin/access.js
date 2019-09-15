@@ -39,7 +39,7 @@ class AccessController extends BaseController {
     if (body.module_id === '0') {
       body.module_id = 0;
     } else {
-      body.module_id = this.app.mongoose.Types.ObjectId(body.module_id);
+      body.module_id = this.service.tool.objectId(body.module_id);
     }
     await new this.ctx.model.Access(body).save();
 
@@ -67,7 +67,7 @@ class AccessController extends BaseController {
     if (body.module_id === '0') {
       body.module_id = 0;
     } else {
-      body.module_id = this.app.mongoose.Types.ObjectId(body.module_id);
+      body.module_id = this.service.tool.objectId(body.module_id);
     }
     await this.ctx.model.Access.updateOne({ _id: body.id }, body);
 

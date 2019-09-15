@@ -1,0 +1,45 @@
+{% extends "../public/layout.html" %}
+
+{% block layout %}
+
+<form action="/admin/goodsTypeAttr/doEdit" method="post">
+  <div class="panel panel-default">
+    <div class="panel-heading">编辑商品类型属性</div>
+    <div class="panel-body">
+      <input type="hidden" name="_csrf" value="{{csrf}}">
+      <input type="hidden" name="id" value="{{ goods_type_attr._id}}">
+      <div class="main-input">
+        <span>名称</span>
+        <input type="text" name="title" class="form-control" value="{{goods_type_attr.title }}">
+      </div>
+
+      <div class="main-input">
+        <span>类型</span>
+        <select name="cate_id">
+          {% for item in goods_types %}
+          <option value="{{item._id}}" {% if item._id == goods_type_attr.cate_id %}selected{% endif %}>{{ item.title }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="main-input">
+        <span>录入方式</span>
+        <input type="radio" name="attr_type" value="1"
+          {% if goods_type_attr.attr_type == 1 %}checked{% endif %}>单行文本框</input>
+        <input type="radio" name="attr_type" value="2"
+          {% if goods_type_attr.attr_type==2 %}checked{% endif %}>多行文本框</input>
+        <input type="radio" name="attr_type" value="3" {% if goods_type_attr.attr_type==3 %}checked{% endif %}>下拉选择框
+        </option>
+      </div>
+
+      <div class="main-input" id="attr_value">
+        <span>下拉框可选值</span>
+        <textarea name="attr_value" placeholder="每行代表一个可选值" rows="5"
+          class="form-control">{{ goods_type_attr.attr_value }}</textarea>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">提交</button>
+</form>
+{% endblock %}

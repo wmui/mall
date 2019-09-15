@@ -1,0 +1,33 @@
+{% extends "../public/layout.html" %}
+
+{% block layout %}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    商品类型属性管理（{{ goods_type.title}}）
+    <button class="btn"><a href="/admin/goodsTypeAttr/add?cate_id={{goods_type._id}}">新增属性</a></button>
+  </div>
+  <table class="table">
+    <tr>
+      <th>名称</th>
+      <th>类型</th>
+      <th>录入方式</th>
+      <th>可选值</th>
+      <th>状态</th>
+      <th>操作</th>
+    </tr>
+    {% for item in list%}
+    <tr>
+      <td>{{ item.title }}</td>
+      <td>{{ item.goods_type[0].title }}</td>
+      <td>{{ item.attr_type }}</td>
+      <td>{{ item.attr_value }}</td>
+      <td>{{ item.status }}</td>
+      <td>
+        <a href="/admin/goodsTypeAttr/edit?id={{item._id}}">修改</a>　
+        <a href="/admin/delete?id={{item._id}}&model=GoodsTypeAttr" id="delete">删除</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}
