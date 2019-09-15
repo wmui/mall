@@ -17,7 +17,8 @@
         <span>类型</span>
         <select name="cate_id">
           {% for item in goods_types %}
-          <option value="{{item._id}}" {% if item._id == goods_type_attr.cate_id %}selected{% endif %}>{{ item.title }}
+          <option value="{{item._id}}"
+            {% if item._id.toString() == goods_type_attr.cate_id.toString() %}selected{% endif %}>{{ item.title }}
           </option>
           {% endfor %}
         </select>

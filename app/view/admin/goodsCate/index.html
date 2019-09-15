@@ -1,0 +1,43 @@
+{% extends "../public/layout.html" %}
+
+{% block layout %}
+<div class="panel panel-default">
+  <div class="panel-heading">
+    商品分类管理
+    <button class="btn"><a href="/admin/goodsCate/add">新增商品类型</a></button>
+  </div>
+  <table class="table">
+    <tr>
+      <th>名称</th>
+      <th>缩略图</th>
+      <th>排序</th>
+      <th>状态</th>
+      <th>操作</th>
+    </tr>
+    {% for item in list %}
+    <tr>
+      <td>{{ item.title }}</td>
+      <td><img src="{{ item.cate_img }}" alt="" width="150px"></td>
+      <td>{{ item.sort }}</td>
+      <td>{{ item.status }}</td>
+      <td>
+        <a href="/admin/goodsCate/edit?id={{item._id}}">修改</a>　
+        <a href="/admin/delete?id={{item._id}}&model=GoodsCate" id="delete">删除</a>
+      </td>
+    </tr>
+    {% for cate in item.items %}
+    <tr>
+      <td>&lfloor;{{ cate.title }}</td>
+      <td>&lfloor;<img src="{{ cate.cate_img }}" alt="" width="150px"></td>
+      <td>&lfloor;{{ cate.sort }}</td>
+      <td>&lfloor;{{ cate.status }}</td>
+      <td>
+        <a href="/admin/goodsCate/edit?id={{cate._id}}">修改</a>　
+        <a href="/admin/delete?id={{cate._id}}&model=GoodsCate" id="delete">删除</a>
+      </td>
+    </tr>
+    {% endfor %}
+    {% endfor %}
+  </table>
+</div>
+{% endblock %}

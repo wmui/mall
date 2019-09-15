@@ -15,7 +15,7 @@ class AccessController extends BaseController {
       },
       {
         $match: {
-          module_id: 0,
+          module_id: '0',
         },
       },
     ]);
@@ -36,11 +36,7 @@ class AccessController extends BaseController {
   async doAdd() {
     const { body } = this.ctx.request;
 
-    if (body.module_id === '0') {
-      body.module_id = 0;
-    } else {
-      body.module_id = this.service.tool.objectId(body.module_id);
-    }
+    if (body.module_id !== '0') body.module_id = this.service.tool.objectId(body.module_id);
     await new this.ctx.model.Access(body).save();
 
     await this.success('/admin/access', '增加权限成功');

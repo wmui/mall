@@ -51,6 +51,13 @@ module.exports = app => {
       createdAt: 'created_at',
       updatedAt: 'updated_at',
     },
+    toJSON: {
+      virtuals: true,
+      versionKey: false,
+      transform(doc, ret) {
+        ret._id = ret._id.toString();
+      },
+    },
   });
 
 

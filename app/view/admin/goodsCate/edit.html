@@ -1,0 +1,74 @@
+{% extends "../public/layout.html" %}
+
+{% block layout %}
+
+<form action="/admin/goodsCate/doEdit?_csrf={{csrf}}" method="post" enctype="multipart/form-data">
+  <div class="panel panel-default">
+    <div class="panel-heading">编辑商品类型</div>
+    <div class="panel-body">
+      <div class="main-input">
+        <span>上级分类</span>
+        <select name="module_id">
+          {% for item in goods_cates %}
+          <option value="{{item._id}}" {% if item._id.toString() == goods_cate.pid.toString() %}selected{% endif %}>
+            {{ item.title }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="main-input">
+        <span>分类名称</span>
+        <input type="text" name="title" class="form-control" value="{{goods_cate.title}}"></input>
+      </div>
+
+      <div class="main-input">
+        <span>分类图片</span>
+        <input name="cate_img" class="form-control" type="file"></input>
+        <img src="{{goods_cate.cate_img}}" alt="" width="150px">
+      </div>
+
+      <div class="main-input">
+        <span>筛选属性</span>
+        <input name="filter_attr" class="form-control" value="{{goods_cate.filter_attr}}"></input>
+      </div>
+
+      <div class="main-input">
+        <span>跳转地址</span>
+        <input name="link" class="form-control" value="{{ goods_cate.link }}"></input>
+      </div>
+
+      <div class="main-input">
+        <span>分类模板</span>
+        <input name="template" class="form-control" value="{{ goods_cate.template }}"></input>
+      </div>
+
+      <div class="main-input">
+        <span>SEO 标题</span>
+        <input name="sub_title" class="form-control" value="{{ goods.sub_title }}"></input>
+      </div>
+
+      <div class="main-input">
+        <span>SEO 关键字</span>
+        <input name="keywords" class="form-control" value="{{ goods_cate.keywords }}"></input>
+      </div>
+
+      <div class="main-input">
+        <span>SEO 描述</span>
+        <input name="description" class="form-control" value="{{ goods_cate.description }}"></input>
+      </div>
+
+      <div class="main-input">
+        <span>排序</span>
+        <input name="sort" class="form-control" value="{{ goods_cate.sort }}"></input>
+      </div>
+
+      <div class="main-input">
+        <span>状态</span>
+        <input type="radio" name="status" value="1" {% if goods_cate.status == "1" %}checked{% endif %}>显示
+        <input type="radio" name="status" value="0" {% if goods_cate.status == "0" %}checked{% endif %}>隐藏
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">提交</button>
+</form>
+{% endblock %}

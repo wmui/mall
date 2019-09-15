@@ -6,7 +6,7 @@ const path = require('path');
 const mkdirp = require('mz-modules/mkdirp');
 const fs = require('fs');
 const pump = require('mz-modules/pump');
-
+const Jimp = require('jimp');
 class ToolService extends Service {
   async captcha() {
     const captcha = svgCaptcha.create({
@@ -35,7 +35,20 @@ class ToolService extends Service {
     };
   }
 
-  async getUploadFile() {
+  async jimp(target) {
+    await Jimp.read(target, (err, lenna) => {
+      if (err) throw err;
+      lenna
+        .resize(200, Jimp.AUTO)
+        .quality(80)
+        .write(target + '_200x200' + path.extname(target));
+      lenna.resize(400, Jimp.AUTO)
+        .quality(80)
+        .write(target + '_400x400' + path.extname(target));
+    });
+  }
+
+  async getUploadFile(enableThumbnail) {
     const parts = this.ctx.multipart({ autoFields: true });
     let stream = null;
     let body = {};
@@ -47,6 +60,7 @@ class ToolService extends Service {
 
       const writeStream = await fs.createWriteStream(uploadDir);
       await pump(stream, writeStream);
+      if (enableThumbnail) this.jimp(uploadDir); // 生成缩略图
       body = Object.assign(parts.field, { [fieldname]: saveDir });
     }
     body = Object.assign(body, parts.field);
