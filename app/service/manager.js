@@ -33,7 +33,7 @@ class ManagerService extends Service {
       },
       {
         $match: {
-          module_id: 0,
+          module_id: '0',
         },
       },
     ]);

@@ -13,11 +13,7 @@
         <span>所属模块</span>
         <select name="module_id">
           {% for item in modules %}
-          {% if item._id.toString() === one.module_id.toString() %}
-          <option value="{{item._id}}" selected>{{ item.module_name }}</option>
-          {% else %}
-          <option value="{{item._id}}">{{ item.module_name }}</option>
-          {% endif %}
+          <option value="{{item._id}}" {{helper.selected(item._id, one.module_id)}}>{{ item.module_name }}</option>
           {% endfor %}
         </select>
       </div>

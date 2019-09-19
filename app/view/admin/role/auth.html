@@ -12,13 +12,13 @@
       <tr>
         <td>
           <input type="checkbox" name="access_node[]" value="{{item._id}}"
-            {% if item.checked%}checked{% endif %}>{{item.module_name}}
+            {{ "checked" if item.checked else ""}}>{{item.module_name}}
         </td>
 
         {% for node in item.items %}
         <td>
-          <input type="checkbox" name="access_node[]" value="{{node._id}}"
-            {% if node.checked%}checked{% endif %}>{{node.action_name}}
+          <input type="checkbox" name="access_node[]" value="{{node._id}}" {
+            {{ "checked" if node.checked else ""}}>{{node.action_name}}
         </td>
         {% endfor %}
       </tr>

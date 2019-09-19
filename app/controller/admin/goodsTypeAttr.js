@@ -1,6 +1,5 @@
 'use strict';
 const BaseController = require('./base');
-
 class GoodsTypeAttrController extends BaseController {
   async index() {
     const { cate_id } = this.ctx.query;

@@ -34,15 +34,9 @@
         <span>管理员角色</span>
         <select name="role_id">
           {% for item in roles %}
-          {% if item._id.toString() === one.role_id.toString() %}
-          <option value="{{item._id}}" selected>
+          <option value="{{item._id}}" {{helper.selected(item._id, one.role_id)}}>
             {{ item.title }}
           </option>
-          {% else %}
-          <option value="{{item._id}}">
-            {{ item.title }}
-          </option>
-          {% endif %}
           {% endfor %}
         </select>
       </div>

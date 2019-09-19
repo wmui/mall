@@ -10,7 +10,7 @@
         <span>上级分类</span>
         <select name="module_id">
           {% for item in list %}
-          <option value="{{item._id}}" {% if item._id.toString() == one.pid.toString() %}selected{% endif %}>
+          <option value="{{item._id}}" {{helper.selected(item._id, one.pid)}}>
             {{ item.title }}</option>
           {% endfor %}
         </select>
