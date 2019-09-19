@@ -9,8 +9,8 @@
       <div class="main-input">
         <span>上级分类</span>
         <select name="module_id">
-          {% for item in goods_cates %}
-          <option value="{{item._id}}" {% if item._id.toString() == goods_cate.pid.toString() %}selected{% endif %}>
+          {% for item in list %}
+          <option value="{{item._id}}" {% if item._id.toString() == one.pid.toString() %}selected{% endif %}>
             {{ item.title }}</option>
           {% endfor %}
         </select>
@@ -18,28 +18,28 @@
 
       <div class="main-input">
         <span>分类名称</span>
-        <input type="text" name="title" class="form-control" value="{{goods_cate.title}}"></input>
+        <input type="text" name="title" class="form-control" value="{{one.title}}"></input>
       </div>
 
       <div class="main-input">
         <span>分类图片</span>
         <input name="cate_img" class="form-control" type="file"></input>
-        <img src="{{goods_cate.cate_img}}" alt="" width="150px">
+        <img src="{{one.cate_img}}" alt="" width="150px">
       </div>
 
       <div class="main-input">
         <span>筛选属性</span>
-        <input name="filter_attr" class="form-control" value="{{goods_cate.filter_attr}}"></input>
+        <input name="filter_attr" class="form-control" value="{{one.filter_attr}}"></input>
       </div>
 
       <div class="main-input">
         <span>跳转地址</span>
-        <input name="link" class="form-control" value="{{ goods_cate.link }}"></input>
+        <input name="link" class="form-control" value="{{ one.link }}"></input>
       </div>
 
       <div class="main-input">
         <span>分类模板</span>
-        <input name="template" class="form-control" value="{{ goods_cate.template }}"></input>
+        <input name="template" class="form-control" value="{{ one.template }}"></input>
       </div>
 
       <div class="main-input">
@@ -49,23 +49,23 @@
 
       <div class="main-input">
         <span>SEO 关键字</span>
-        <input name="keywords" class="form-control" value="{{ goods_cate.keywords }}"></input>
+        <input name="keywords" class="form-control" value="{{ one.keywords }}"></input>
       </div>
 
       <div class="main-input">
         <span>SEO 描述</span>
-        <input name="description" class="form-control" value="{{ goods_cate.description }}"></input>
+        <input name="description" class="form-control" value="{{ one.description }}"></input>
       </div>
 
       <div class="main-input">
         <span>排序</span>
-        <input name="sort" class="form-control" value="{{ goods_cate.sort }}"></input>
+        <input name="sort" class="form-control" value="{{ one.sort }}"></input>
       </div>
 
       <div class="main-input">
         <span>状态</span>
-        <input type="radio" name="status" value="1" {% if goods_cate.status == "1" %}checked{% endif %}>显示
-        <input type="radio" name="status" value="0" {% if goods_cate.status == "0" %}checked{% endif %}>隐藏
+        <input type="radio" name="status" value="1" {% if one.status == "1" %}checked{% endif %}>显示
+        <input type="radio" name="status" value="0" {% if one.status == "0" %}checked{% endif %}>隐藏
       </div>
     </div>
   </div>

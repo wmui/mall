@@ -6,16 +6,16 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <input type="hidden" name="_csrf" value="{{csrf}}">
-      <input type="hidden" name="id" value="{{role._id}}">
+      <input type="hidden" name="id" value="{{one._id}}">
       <div class="main-input">
         <span>角色名称</span>
-        <input type="text" name="title" class="form-control" value="{{role.title}}">
+        <input type="text" name="title" class="form-control" value="{{one.title}}">
       </div>
 
 
       <div class="main-input">
         <span>角色描述</span>
-        <textarea name="description" rows="3" class="form-control">{{role.description}}</textarea>
+        <textarea name="description" rows="3" class="form-control">{{one.description}}</textarea>
       </div>
     </div>
   </div>

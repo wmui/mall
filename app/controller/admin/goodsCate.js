@@ -39,12 +39,12 @@ class GoodsCateController extends BaseController {
   async edit() {
     const { id } = this.ctx.request.query;
     const { GoodsCate } = this.ctx.model;
-    const goods_cate = await GoodsCate.findOne({ _id: id });
-    const goods_cates = await GoodsCate.find({ pid: '0' });
-    goods_cates.unshift({ _id: '0', title: '--顶级分类--' });
+    const one = await GoodsCate.findOne({ _id: id });
+    const list = await GoodsCate.find({ pid: '0' });
+    list.unshift({ _id: '0', title: '--顶级分类--' });
     await this.ctx.render('admin/goodsCate/edit', {
-      goods_cates,
-      goods_cate,
+      list,
+      one,
     });
   }
 

@@ -3,46 +3,46 @@
 {% block layout %}
 
 <form action="/admin/focus/doEdit?_csrf={{csrf}}" method="post" enctype="multipart/form-data">
-  <input type="hidden" name="id" value="{{ focus._id }}">
+  <input type="hidden" name="id" value="{{ one._id }}">
   <div class="panel-heading">编辑轮播图</div>
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="main-input">
         <span>分类</span>
         <select name="type">
-          <option value="1" {% if focus.type == 1 %}selected{% endif %}>网站</option>
-          <option value="2" {% if focus.type == 2 %}selected{% endif %}>APP</option>
-          <option value="3" {% if focus.type == 3 %}selected{% endif %}>小程序</option>
+          <option value="1" {% if one.type == 1 %}selected{% endif %}>网站</option>
+          <option value="2" {% if one.type == 2 %}selected{% endif %}>APP</option>
+          <option value="3" {% if one.type == 3 %}selected{% endif %}>小程序</option>
         </select>
       </div>
 
       <div class="main-input">
         <span>名称</span>
-        <input type="text" name="title" class="form-control" value="{{focus.title}}">
+        <input type="text" name="title" class="form-control" value="{{one.title}}">
       </div>
 
       <div class="main-input">
         <span>链接地址</span>
-        <input type="text" name="link" class="form-control" value="{{focus.link}}">
+        <input type="text" name="link" class="form-control" value="{{one.link}}">
       </div>
 
 
       <div class="main-input">
         <span>轮播图</span>
-        <input type="file" name="focus_img" class="form-control">
+        <input type="file" name="one_img" class="form-control">
       </div>
 
-      <img src="{{focus.focus_img}}" alt="" width="150px">
+      <img src="{{one.focus_img}}" alt="" width="150px">
 
       <div class="main-input">
         <span>排序</span>
-        <input type="text" name="sort" class="form-control" value="{{focus.sort}}">
+        <input type="text" name="sort" class="form-control" value="{{one.sort}}">
       </div>
 
       <div class="main-input">
         <span>状态</span>
-        <input type="radio" name="status" value="1" {% if focus.status == 1 %}checked{% endif %}>显示
-        <input type="radio" name="status" value="0" {% if focus.status == 0 %}checked{% endif %}>隐藏
+        <input type="radio" name="status" value="1" {% if one.status == 1 %}checked{% endif %}>显示
+        <input type="radio" name="status" value="0" {% if one.status == 0 %}checked{% endif %}>隐藏
       </div>
     </div>
   </div>

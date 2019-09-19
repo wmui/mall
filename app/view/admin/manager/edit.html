@@ -7,10 +7,10 @@
   <div class="panel panel-default">
     <div class="panel-body">
       <input type="hidden" name="_csrf" value="{{csrf}}">
-      <input type="hidden" name="id" value="{{manager._id}}">
+      <input type="hidden" name="id" value="{{one._id}}">
       <div class="main-input">
         <span>管理员用户名</span>
-        <input type="text" name="username" class="form-control" value="{{manager.username}}">
+        <input type="text" name="username" class="form-control" value="{{one.username}}">
       </div>
 
       <div class="main-input">
@@ -21,20 +21,20 @@
 
       <div class="main-input">
         <span>管理员电话</span>
-        <input type="text" name="mobile" class="form-control" value="{{manager.mobile}}">
+        <input type="text" name="mobile" class="form-control" value="{{one.mobile}}">
       </div>
 
 
       <div class="main-input">
         <span>管理员邮箱</span>
-        <input type="text" name="email" class="form-control" value="{{manager.email}}">
+        <input type="text" name="email" class="form-control" value="{{one.email}}">
       </div>
 
       <div class="main-input">
         <span>管理员角色</span>
         <select name="role_id">
           {% for item in roles %}
-          {% if item._id.toString() === manager.role_id.toString() %}
+          {% if item._id.toString() === one.role_id.toString() %}
           <option value="{{item._id}}" selected>
             {{ item.title }}
           </option>

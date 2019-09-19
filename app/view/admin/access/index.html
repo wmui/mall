@@ -13,7 +13,7 @@
       <th>权限描述</th>
       <th>操作</th>
     </tr>
-    {% for item in access%}
+    {% for item in list%}
     <tr class="active">
       <td>{{ item.module_name }}</td>
       <td>{{ helper.getNodeName(item.type) }}</td>

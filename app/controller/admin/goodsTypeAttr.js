@@ -47,11 +47,11 @@ class GoodsTypeAttrController extends BaseController {
   async edit() {
     const { GoodsTypeAttr, GoodsType } = this.ctx.model;
     const { id } = this.ctx.query;
-    const goods_type_attr = await GoodsTypeAttr.findOne({ _id: id });
+    const list = await GoodsTypeAttr.findOne({ _id: id });
     const goods_types = await GoodsType.find({});
 
     await this.ctx.render('admin/goodsTypeAttr/edit', {
-      goods_type_attr,
+      list,
       goods_types,
     });
   }

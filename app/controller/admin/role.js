@@ -4,8 +4,8 @@ const BaseController = require('./base.js');
 
 class RoleController extends BaseController {
   async index() {
-    const roles = await this.ctx.model.Role.find();
-    await this.ctx.render('admin/role/index', { roles });
+    const list = await this.ctx.model.Role.find();
+    await this.ctx.render('admin/role/index', { list });
   }
 
   async add() {
@@ -20,8 +20,8 @@ class RoleController extends BaseController {
 
   async edit() {
     const { id } = this.ctx.query;
-    const role = await this.ctx.model.Role.findOne({ _id: id });
-    await this.ctx.render('admin/role/edit', { role });
+    const one = await this.ctx.model.Role.findOne({ _id: id });
+    await this.ctx.render('admin/role/edit', { one });
   }
 
   async doEdit() {
@@ -33,8 +33,6 @@ class RoleController extends BaseController {
   async auth() {
     const { role_id } = this.ctx.request.query;
     const access = await this.service.manager.getAuthList(role_id);
-
-
     await this.ctx.render('admin/role/auth', {
       access,
       role_id,
