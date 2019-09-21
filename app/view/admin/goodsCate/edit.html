@@ -3,6 +3,8 @@
 {% block layout %}
 
 <form action="/admin/goodsCate/doEdit?_csrf={{csrf}}" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="id" value="{{one._id}}">
+  <input type="hidden" name="pid" value="{{one.pid}}">
   <div class="panel panel-default">
     <div class="panel-heading">编辑商品类型</div>
     <div class="panel-body">

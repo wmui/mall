@@ -1,0 +1,137 @@
+{% extends "../public/layout.html" %}
+
+{% block script %}
+<script src="/public/wysiwyg-editor/js/froala_editor.pkgd.min.js"></script>
+<script src="/public/wysiwyg-editor/js/zh_cn.js"></script>
+<script src="/public/webuploader/js/webuploader.html5only.min.js"></script>
+<script src="/public/webuploader/js/diyUpload.js"></script>
+<script src="/public/admin/js/goods.js"></script>
+{% endblock %}
+
+{% block css %}
+<link href="/public/wysiwyg-editor/css/font-awesome.min.css" rel="stylesheet" />
+<link href="/public/wysiwyg-editor/css/froala_editor.pkgd.min.css" rel="stylesheet" />
+<link href="/public/wysiwyg-editor/css/froala_style.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="/public/webuploader/css/webuploader.css">
+<link rel="stylesheet" href="/public/webuploader/css/diyUpload.css">
+{% endblock %}
+
+{% block layout %}
+
+<form action="/admin/goods/doAdd?_csrf={{csrf}}" method="post" enctype="multipart/form-data">
+  <div class="panel panel-default">
+    <div class="panel-heading">新增商品类型</div>
+    <div class="panel-body">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#a" data-toggle="tab">信息</a></li>
+        <li><a href="#b" data-toggle="tab">描述</a></li>
+        <li><a href="#c" data-toggle="tab">其他</a></li>
+        <li><a href="#d" data-toggle="tab">规格与包装</a></li>
+        <li><a href="#e" data-toggle="tab">相册</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane active" id="a">
+          <div class="main-input">
+            <span>标题</span>
+            <input name="title" class="form-control"></input>
+          </div>
+          <div class="main-input">
+            <span>子标题</span>
+            <input name="sub_title" class="form-control"></input>
+          </div>
+          <div class="main-input">
+            <span>版本</span>
+            <input name="goods_version" class="form-control"></input>
+          </div>
+          <div class="main-input">
+            <span>所属分类</span>
+            <select name="cate_id">
+              {% for item in goods_cates %}
+              <option value="{{item._id}}">{{ item.title }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="main-input">
+            <span>图片</span>
+            <input type="file" name="goods_img" class="form-control"></input>
+          </div>
+          <div class="main-input">
+            <span>价格</span>
+            <input name="shop_price" class="form-control"></input>
+          </div>
+          <div class="main-input">
+            <span>市场价</span>
+            <input name="merket_price" class="form-control"></input>
+          </div>
+
+          <div class="main-input">
+            <span>推荐</span>
+            <input type="checkbox" value="1" name="is_best" /> 精品
+            <input type="checkbox" value="1" name="is_hot" /> 热销
+            <input type="checkbox" value="1" name="is_new" /> 新品
+          </div>
+        </div>
+        <div class="tab-pane" id="b">
+          <div class="main-input">
+            <span>描述</span>
+            <textarea name="goods_content" id="goods_content" cols="30" rows="10" class="form-control"></textarea>
+          </div>
+        </div>
+        <div class="tab-pane" id="c">
+          <div class="main-input">
+            <span>颜色</span>
+            <input name="goods_color" class="form-control"></input>
+          </div>
+          <div class="main-input">
+            <span>关联商品</span>
+            <input name="relation_goods" class="form-control" placeholder="填写关联商品的id，格式：23,24,39"></input>
+          </div>
+          <div class="main-input">
+            <span>关联赠品</span>
+            <input name="relation_goods" class="form-control"
+              placeholder="可为空 格式：23-2,39-5 说明：例如23-2 中的23表示商品id,2表示赠品id"></input>
+          </div>
+          <div class="main-input">
+            <span>关联配件</span>
+            <input name="goods_fitting" class="form-control"
+              placeholder="可为空 格式：23-2,39-5 说明：例如23-2 中的23表示商品id,2表示配件id"></input>
+          </div>
+
+          <div class="main-input">
+            <span>更多属性</span>
+            <input name="goods_attr" class="form-control" placeholder="格式:  颜色:红色,白色,黄色 | 尺寸:41,42,43"></input>
+          </div>
+          <div class="main-input">
+            <span>SEO关键字</span>
+            <input name="goods_keywords" class="form-control"></input>
+          </div>
+          <div class="main-input">
+            <span>SEO描述</span>
+            <textarea name="goods_description" class="form-control" rows="5"></textarea>
+          </div>
+        </div>
+        <div class="tab-pane" id="d">
+          <div class="main-input">
+            <span>商品类型</span>
+            <select name="goods_type_id" id="goods_type_id">
+              <option value="0">--请选择商品类型--</option>
+              {% for item in goods_types %}
+              <option value="{{item._id }}">{{ item.title }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <div id="goods_type_attr"></div>
+        </div>
+        <div class="tab-pane" id="e">
+          <button class="btn" type="button" id="photo_btn"></button>
+          <div id="photo_list"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">提交</button>
+</form>
+{% endblock %}

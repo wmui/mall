@@ -19,9 +19,9 @@
     <tr>
       <td>{{ item.title }}</td>
       <td>{{ item.goods_type[0].title }}</td>
-      <td>{{ item.attr_type }}</td>
+      <td>{{ helper.getMethod(item.attr_type) }}</td>
       <td>{{ item.attr_value }}</td>
-      <td>{{ item.status }}</td>
+      <td>{{ helper.getStatus(item.status) }}</td>
       <td>
         <a href="/admin/goodsTypeAttr/edit?id={{item._id}}">修改</a>　
         <a href="/admin/delete?id={{item._id}}&model=GoodsTypeAttr" id="delete">删除</a>

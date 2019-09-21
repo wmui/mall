@@ -1,5 +1,21 @@
 {% extends "../public/layout.html" %}
 
+{% block script %}
+<script>
+  $(function () {
+    $('#attr_value').hide()
+    $('input[name="attr_type"]').change(function () {
+      if ($(this).val() === '3') {
+        $('#attr_value').show()
+      } else {
+        $('#attr_value').hide()
+      }
+    })
+  })
+
+</script>
+{% endblock %}
+
 {% block layout %}
 
 <form action="/admin/goodsTypeAttr/doAdd" method="post">

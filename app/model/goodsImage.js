@@ -1,16 +1,18 @@
 'use strict';
-// 手机、电脑、路由器等
 module.exports = app => {
   const mongoose = app.mongoose;
   const Schema = mongoose.Schema;
 
-  const GoodsTypeSchema = new Schema({
-    title: {
-      type: String,
-      defaulr: '',
+  const GoodsImageSchema = new Schema({
+    goods_id: {
+      type: Schema.Types.ObjectId,
     },
-    description: {
+    img_url: {
       type: String,
+      default: '',
+    },
+    color_id: {
+      type: Schema.Types.Mixed, // 混合类型
       default: '',
     },
     status: {
@@ -24,6 +26,5 @@ module.exports = app => {
     },
   });
 
-
-  return mongoose.model('GoodsType', GoodsTypeSchema, 'goods_type');
+  return mongoose.model('GoodsImage', GoodsImageSchema, 'goods_image');
 };

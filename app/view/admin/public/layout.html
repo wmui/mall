@@ -8,6 +8,7 @@
   <title>后台管理</title>
   <link rel="stylesheet" href="/public/bootstrap/css/bootstrap.css">
   <link rel="stylesheet" href="/public/admin/css/main.css">
+  {% block css %}{% endblock %}
 </head>
 
 <body>
@@ -27,7 +28,6 @@
   </nav>
 
   <div class="layout">
-
     <aside class="aside">
       <div class="list-group">
         {% for menu in menus %}
@@ -53,6 +53,7 @@
   </div>
   <script src="/public/admin/js/jquery-1.10.1.js"></script>
   <script src="/public/bootstrap/js/bootstrap.js"></script>
+  {% block script %}{% endblock %}
   <script src="/public/admin/js/main.js"></script>
 </body>
 

@@ -51,6 +51,7 @@ class GoodsCateController extends BaseController {
   async doEdit() {
     const { GoodsCate } = this.ctx.model;
     const body = await this.service.tool.getUploadFile(true);
+    console.log(body);
 
     if (body.pid !== '0') body.pid = this.service.tool.objectId(body.pid);
     await GoodsCate.updateOne({ _id: body.id }, body);

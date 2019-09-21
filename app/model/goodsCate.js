@@ -1,4 +1,5 @@
 'use strict';
+// 手机：小米、华为、iphone
 module.exports = app => {
   const mongoose = app.mongoose;
   const Schema = mongoose.Schema;
@@ -50,13 +51,6 @@ module.exports = app => {
     timestamps: {
       createdAt: 'created_at',
       updatedAt: 'updated_at',
-    },
-    toJSON: {
-      virtuals: true,
-      versionKey: false,
-      transform(doc, ret) {
-        ret._id = ret._id.toString();
-      },
     },
   });
 
