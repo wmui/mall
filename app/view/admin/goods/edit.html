@@ -137,6 +137,9 @@
         </div>
         <div class="tab-pane" id="e">
           <button class="btn" type="button" id="photo_btn"></button>
+          {% for item in goods_images %}
+          <img src="{{item.img_url}}" width="200px" />
+          {% endfor %}
           <div id="photo_list"></div>
         </div>
       </div>

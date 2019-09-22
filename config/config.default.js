@@ -49,6 +49,13 @@ module.exports = appInfo => {
       fields: 30,
     },
     uploadDir: 'app/public/upload',
+    security: {
+      csrf: {
+        ignore: ctx => {
+          return [ '/admin/goods/upload' ].includes(ctx.request.url);
+        },
+      },
+    },
   };
 
   return {

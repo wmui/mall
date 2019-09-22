@@ -2,21 +2,21 @@
 const BaseController = require('./base');
 
 class GoodsController extends BaseController {
-  async goodsOther(goods, body) {
+  async goodsOther(body) {
     // goods photos
-    if (goods && body.goods_image_list) {
+    if (body.goods_image_list) {
       let { goods_image_list } = body;
       if (typeof goods_image_list === 'string') goods_image_list = Array.of(goods_image_list);
 
       for (const item of goods_image_list) {
         await new this.ctx.model.GoodsImage({
-          goods_id: goods._id,
+          goods_id: body.id,
           img_url: item,
         }).save();
       }
     }
 
-    if (goods && body.type_attr_id && body.type_attr_value) {
+    if (body.type_attr_id && body.type_attr_value) {
       let { type_attr_id, type_attr_value } = body;
       if (typeof type_attr_id === 'string') {
         type_attr_id = Array.of(type_attr_id);
@@ -30,7 +30,7 @@ class GoodsController extends BaseController {
         if (element) {
           const attr = await this.ctx.model.GoodsTypeAttr.findOne({ _id: element });
           await new this.ctx.model.GoodsAttr({
-            goods_id: goods._id,
+            goods_id: body.id,
             cate_id: body.cate_id,
             attr_id: element,
             attr_value: type_attr_value[i],
@@ -122,7 +122,7 @@ class GoodsController extends BaseController {
         let options = '';
         arr.forEach(i => {
           const selected = i === item.now_value ? 'selected' : '';
-          options += `<option ${selected}>${i}</option>`;
+          options += `<option value="${i}" ${selected}>${i}</option>`;
         });
 
         str += `
@@ -149,7 +149,7 @@ class GoodsController extends BaseController {
     const body = await this.service.tool.getUploadFile();
 
     const goods = await new this.ctx.model.Goods(body).save();
-    await this.goodsOther(goods, body);
+    await this.goodsOther({ id: goods._id, ...body });
     await this.success('/admin/goods', '增加商品成功');
   }
   async edit() {
@@ -157,7 +157,7 @@ class GoodsController extends BaseController {
     const data = await this.goodsCommon();
     const one = await this.ctx.model.Goods.findOne({ _id: id });
     // goods images
-    const goods_images = await this.ctx.model.GoodsImage.find({ _id: id });
+    const goods_images = await this.ctx.model.GoodsImage.find({ goods_id: id });
     // goods colors
     const goods_color = one.goods_color.map(i => ({ _id: i }));
     // goods attrs
@@ -174,14 +174,17 @@ class GoodsController extends BaseController {
   }
   async doEdit() {
     const body = await this.service.tool.getUploadFile();
-    console.log(body);
 
-    const goods = await this.ctx.model.Goods.updateOne({ _id: body.id }, body);
+    const goods = await this.ctx.model.Goods.updateOne({ _id: body.id }, body).exec();
 
     // delete old attr data, then add new data
     await this.ctx.model.GoodsAttr.deleteOne({ goods_id: body.id });
-    await this.goodsOther(goods, body);
+    goods && await this.goodsOther(body);
     await this.success('/admin/goods', '编辑商品成功');
+  }
+  async upload() {
+    const body = await this.service.tool.getUploadFile(true);
+    this.ctx.body = { link: body.file };
   }
 
   async goodsTypeAttr() {
