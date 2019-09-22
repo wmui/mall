@@ -59,8 +59,8 @@ module.exports = app => {
       default: '',
     },
     goods_color: {
-      type: String,
-      default: '',
+      type: Array,
+      default: () => [],
     },
     goods_keywords: {
       type: String,

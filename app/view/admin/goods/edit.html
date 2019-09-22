@@ -18,9 +18,10 @@
 
 {% block layout %}
 
-<form action="/admin/goods/doAdd?_csrf={{csrf}}" method="post" enctype="multipart/form-data">
+<form action="/admin/goods/doEdit?_csrf={{csrf}}" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="id" value="{{one._id}}">
   <div class="panel panel-default">
-    <div class="panel-heading">新增商品类型</div>
+    <div class="panel-heading">编辑商品</div>
     <div class="panel-body">
       <!-- Nav tabs -->
       <ul class="nav nav-tabs">
@@ -36,83 +37,88 @@
         <div class="tab-pane active" id="a">
           <div class="main-input">
             <span>标题</span>
-            <input name="title" class="form-control"></input>
+            <input name="title" class="form-control" value="{{one.title}}"></input>
           </div>
           <div class="main-input">
             <span>子标题</span>
-            <input name="sub_title" class="form-control"></input>
+            <input name="sub_title" class="form-control" value="{{ one.sub_title}}"></input>
           </div>
           <div class="main-input">
             <span>版本</span>
-            <input name="goods_version" class="form-control"></input>
+            <input name="goods_version" class="form-control" value="{{one.goods_version}}"></input>
           </div>
           <div class="main-input">
             <span>所属分类</span>
             <select name="goods_type_id">
               {% for item in goods_cates %}
-              <option value="{{item._id}}">{{ item.title }}</option>
+              <option value="{{item._id}}" {{ helper.selected(item._id, one.goods_type_id)}}>{{ item.title }}</option>
               {% endfor %}
             </select>
           </div>
           <div class="main-input">
             <span>图片</span>
             <input type="file" name="goods_img"></input>
+            <img src="{{one.goods_img}}" alt="" width="150px">
           </div>
           <div class="main-input">
             <span>价格</span>
-            <input name="shop_price" class="form-control"></input>
+            <input name="shop_price" class="form-control" value="{{one.shop_price}}"></input>
           </div>
           <div class="main-input">
             <span>市场价</span>
-            <input name="merket_price" class="form-control"></input>
+            <input name="merket_price" class="form-control" value="{{one.market_price }}"></input>
           </div>
 
           <div class="main-input">
             <span>推荐</span>
-            <input type="checkbox" value="1" name="is_best" /> 精品
-            <input type="checkbox" value="1" name="is_hot" /> 热销
-            <input type="checkbox" value="1" name="is_new" /> 新品
+            <input type="checkbox" value="1" name="is_best" {% if one.is_best == 1 %}checked{% endif %} /> 精品
+            <input type="checkbox" value="1" name="is_hot" {% if one.is_hot == 1 %}checked{% endif %} /> 热销
+            <input type="checkbox" value="1" name="is_new" {% if one.is_new == 1 %}checked{% endif %} /> 新品
           </div>
         </div>
         <div class="tab-pane" id="b">
           <div class="main-input">
             <span>描述</span>
-            <textarea name="goods_content" id="goods_content" cols="30" rows="10" class="form-control"></textarea>
+            <textarea name="goods_content" id="goods_content" cols="30" rows="10"
+              class="form-control">{{ one.goods_content }}</textarea>
           </div>
         </div>
         <div class="tab-pane" id="c">
           <div class="main-input">
             <span>颜色</span>
             {% for color in goods_colors %}
-            <input name="goods_color" type="checkbox" value="{{color._id}}" />{{ color.color_name }}
+            <input name="goods_color" type="checkbox" value="{{color._id }}"
+              {{helper.checkedColor(color._id, one.goods_color)}}>{{ color.color_name }}</input>
             {% endfor %}
           </div>
           <div class="main-input">
             <span>关联商品</span>
-            <input name="relation_goods" class="form-control" placeholder="填写关联商品的id，格式：23,24,39"></input>
+            <input name="relation_goods" class="form-control" placeholder="填写关联商品的id，格式：23,24,39"
+              value="{{one.relation_goods}}"></input>
           </div>
           <div class="main-input">
             <span>关联赠品</span>
-            <input name="goods_gift" class="form-control"
-              placeholder="可为空 格式：23-2,39-5 说明：例如23-2 中的23表示商品id,2表示赠品id"></input>
+            <input name="goods_gift" class="form-control" placeholder="可为空 格式：23-2,39-5 说明：例如23-2 中的23表示商品id,2表示赠品id"
+              value="{{ one.goods_gift }}"></input>
           </div>
           <div class="main-input">
             <span>关联配件</span>
-            <input name="goods_fitting" class="form-control"
-              placeholder="可为空 格式：23-2,39-5 说明：例如23-2 中的23表示商品id,2表示配件id"></input>
+            <input name="goods_fitting" class="form-control" placeholder="可为空 格式：23-2,39-5 说明：例如23-2 中的23表示商品id,2表示配件id"
+              value="{{one.goods_fitting}}"></input>
           </div>
 
           <div class="main-input">
             <span>更多属性</span>
-            <input name="goods_attr" class="form-control" placeholder="格式:  颜色:红色,白色,黄色 | 尺寸:41,42,43"></input>
+            <input name="goods_attr" class="form-control" placeholder="格式:  颜色:红色,白色,黄色 | 尺寸:41,42,43"
+              value="{{ one.goods_attr}}"></input>
           </div>
           <div class="main-input">
             <span>SEO关键字</span>
-            <input name="goods_keywords" class="form-control"></input>
+            <input name="goods_keywords" class="form-control" value="{{one.goods_keywords}}"></input>
           </div>
           <div class="main-input">
             <span>SEO描述</span>
-            <textarea name="goods_description" class="form-control" rows="5"></textarea>
+            <textarea name="goods_description" class="form-control" rows="5">{{one.goods_description}}</textarea>
           </div>
         </div>
         <div class="tab-pane" id="d">
@@ -121,11 +127,13 @@
             <select name="cate_id" id="cate_id">
               <option value="0">--请选择商品类型--</option>
               {% for item in goods_types %}
-              <option value="{{item._id }}">{{ item.title }}</option>
+              <option value="{{item._id }}" {{helper.selected(item._id, one.cate_id)}}>{{ item.title }}</option>
               {% endfor %}
             </select>
           </div>
-          <div id="goods_type_attr"></div>
+          <div id="goods_type_attr">
+            {{ goods_type_attrs | safe }}
+          </div>
         </div>
         <div class="tab-pane" id="e">
           <button class="btn" type="button" id="photo_btn"></button>

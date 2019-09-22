@@ -52,47 +52,10 @@ $(function () {
 
 
 $(function () {
-  $('#goods_type_id').change(function () {
+  $('#cate_id').change(function () {
     var cate_id = $(this).val();
     $.get('/admin/goods/goodsTypeAttr?cate_id=' + cate_id, function (res) {
-      // console.log(res); array
-      // switch attr_type: input textarea select
-      var str = ''
-      res.forEach(function (item) {
-        if (item.attr_type == 1) {
-          str +=
-            '<div class="main-input">' +
-            '<span>' + item.title + '</span>' +
-            '<input class="form-control" name="goods_type_attrs"></input>' +
-            '<input type="hidden" value="' + item._id +
-            '" class="form-control" name="goods_type_attrs"></input>' +
-            '</div>'
-        }
-        if (item.attr_type == 2) {
-          str +=
-            '<div class="main-input">' +
-            '<span>' + item.title + '</span>' +
-            '<textarea class="form-control" name="goods_type_attrs" rows="5"></textarea>' +
-            '<input type="hidden" value="' + item._id +
-            '" class="form-control" name="goods_type_attrs"></input>' +
-            '</div>'
-        }
-        if (item.attr_type == 3) {
-          var arr = item.attr_value.split('\n');
-          var options = '';
-          arr.forEach(function (i) {
-            options += '<option>' + i + '</option>'
-          })
-          str +=
-            '<div class="main-input">' +
-            '<span>' + item.title + '</span>' +
-            '<select name="goods_type_attrs">' + options + '</select>' +
-            '<input type="hidden" value="' + item._id +
-            '" class="form-control" name="goods_type_attrs"></input>' +
-            '</div>'
-        }
-      });
-      $('#goods_type_attr').html(str)
+      $('#goods_type_attr').html(res)
     })
   })
 })

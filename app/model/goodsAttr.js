@@ -9,18 +9,18 @@ module.exports = app => {
     cate_id: {
       type: Schema.Types.ObjectId,
     },
-    attribute_id: {
+    attr_id: {
       type: Schema.Types.ObjectId,
     },
-    attribute_type: {
+    attr_type: {
       type: String,
       default: '',
     },
-    attribute_title: {
+    attr_title: {
       type: String,
       default: '',
     },
-    attribute_value: {
+    attr_value: {
       type: String,
       default: '',
     },

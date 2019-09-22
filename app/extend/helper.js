@@ -30,4 +30,8 @@ module.exports = {
   selected(val1, val2) {
     return val1.toString() === val2.toString() ? 'selected' : '';
   },
+  checkedColor(val, arr) {
+    const a = arr.map(i => i.toString());
+    return a.includes(val.toString()) ? 'checked' : '';
+  },
 };
