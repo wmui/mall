@@ -10,14 +10,12 @@
     <tr>
       <th>名称</th>
       <th>描述</th>
-      <th>状态</th>
       <th>操作</th>
     </tr>
     {% for item in list%}
     <tr>
       <td>{{ item.title }}</td>
       <td>{{ item.description }}</td>
-      <td>{{ item.status }}</td>
       <td>
         <a href="/admin/goodsTypeAttr?cate_id={{item._id}}">属性</a>　
         <a href="/admin/goodsType/edit?id={{item._id}}">修改</a>　

@@ -26,10 +26,52 @@
       <td>{{ item.goods_sn }}</td>
       <td>{{ item.shop_price }}</td>
       <td>{{ item.click_conut}}</td>
-      <td>{{ item.status }}</td>
-      <td>{{ item.is_best}}</td>
-      <td>{{ item.is_new}}</td>
-      <td>{{ item.is_hot}}</td>
+      {% if item.status == 1 %}
+      <td>
+        <span class="glyphicon glyphicon-ok" onclick="handleChangeStatus(this, 'Goods', '{{ item._id }}', 0)"></span>
+      </td>
+      {% else %}
+      <td>
+        <span class="glyphicon glyphicon-remove"
+          onclick="handleChangeStatus(this, 'Goods', '{{ item._id }}', 1)"></span>
+      </td>
+      {% endif %}
+      {% if item.is_best == 1 %}
+      <td>
+        <span class="glyphicon glyphicon-ok"
+          onclick="handleChangeStatus(this, 'Goods', '{{ item._id }}', 0, 'is_best')"></span>
+      </td>
+      {% else %}
+      <td>
+        <span class="glyphicon glyphicon-remove"
+          onclick="handleChangeStatus(this, 'Goods', '{{ item._id }}', 1, 'is_best')"></span>
+      </td>
+      {% endif %}
+
+      {% if item.is_new == 1 %}
+      <td>
+        <span class="glyphicon glyphicon-ok"
+          onclick="handleChangeStatus(this, 'Goods', '{{ item._id }}', 0, 'is_new')"></span>
+      </td>
+      {% else %}
+      <td>
+        <span class="glyphicon glyphicon-remove"
+          onclick="handleChangeStatus(this, 'Goods', '{{ item._id }}', 1, 'is_new')"></span>
+      </td>
+      {% endif %}
+
+      {% if item.is_hot == 1 %}
+      <td>
+        <span class="glyphicon glyphicon-ok"
+          onclick="handleChangeStatus(this, 'Goods', '{{ item._id }}', 0, 'is_hot')"></span>
+      </td>
+      {% else %}
+      <td>
+        <span class="glyphicon glyphicon-remove"
+          onclick="handleChangeStatus(this, 'Goods', '{{ item._id }}', 1, 'is_hot')"></span>
+      </td>
+      {% endif %}
+
       <td>{{ item.sort }}</td>
       <td>{{ item.goods_number }}</td>
 

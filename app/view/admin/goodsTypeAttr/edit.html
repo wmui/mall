@@ -27,7 +27,7 @@
       <div class="main-input">
         <span>录入方式</span>
         {% for key, val in fieldType %}
-        <input type="radio" name="attr_type" value="{{ key }}}"
+        <input type="radio" name="attr_type" value="{{ key }}"
           {% if one.attr_type == key %}checked{% endif %}>{{ val }}</input>
         {% endfor %}
       </div>

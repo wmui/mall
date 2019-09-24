@@ -19,7 +19,17 @@
       <td>{{ item.title }}</td>
       <td><img src="{{ item.cate_img }}" alt="" width="150px"></td>
       <td>{{ item.sort }}</td>
-      <td>{{ item.status }}</td>
+      {% if item.status == 1 %}
+      <td>
+        <span class="glyphicon glyphicon-ok"
+          onclick="handleChangeStatus(this, 'GoodsCate', '{{ item._id }}', 0)"></span>
+      </td>
+      {% else %}
+      <td>
+        <span class="glyphicon glyphicon-remove"
+          onclick="handleChangeStatus(this, 'GoodsCate', '{{ item._id }}', 1)"></span>
+      </td>
+      {% endif %}
       <td>
         <a href="/admin/goodsCate/edit?id={{item._id}}">修改</a>　
         <a href="/admin/delete?id={{item._id}}&model=GoodsCate" id="delete">删除</a>
@@ -30,7 +40,17 @@
       <td>&lfloor;{{ cate.title }}</td>
       <td>&lfloor;<img src="{{ cate.cate_img }}" alt="" width="150px"></td>
       <td>&lfloor;{{ cate.sort }}</td>
-      <td>&lfloor;{{ cate.status }}</td>
+      {% if cate.status == 1 %}
+      <td>&lfloor;
+        <span class="glyphicon glyphicon-ok"
+          onclick="handleChangeStatus(this, 'GoodsCate', '{{ cate._id }}', 0)"></span>
+      </td>
+      {% else %}
+      <td>&lfloor;
+        <span class="glyphicon glyphicon-remove"
+          onclick="handleChangeStatus(this, 'GoodsCate', '{{ cate._id }}', 1)"></span>
+      </td>
+      {% endif %}
       <td>
         <a href="/admin/goodsCate/edit?id={{cate._id}}">修改</a>　
         <a href="/admin/delete?id={{cate._id}}&model=GoodsCate" id="delete">删除</a>

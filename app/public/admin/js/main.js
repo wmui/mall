@@ -6,11 +6,12 @@ $(function () {
   })
 })
 
-function handleChangeStatus(el, model, id, val) {
+function handleChangeStatus(el, model, id, val, field) {
+  field = field || 'status'
   $.ajax({
     url: '/admin/status',
     method: 'put',
-    data: { model, id, val },
+    data: { model, id, val, field },
     success: function (res) {
       val == 1 && $(el).attr('class', 'glyphicon glyphicon-ok')
       val == 0 && $(el).attr('class', 'glyphicon glyphicon-remove')

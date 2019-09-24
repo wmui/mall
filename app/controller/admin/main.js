@@ -8,8 +8,8 @@ class MainController extends Controller {
   }
 
   async status() {
-    const { model, id, val } = this.ctx.request.body;
-    await this.ctx.model[model].updateOne({ _id: id }, { status: +val });
+    const { model, id, val, field } = this.ctx.request.body;
+    await this.ctx.model[model].updateOne({ _id: id }, { [field]: +val });
     this.ctx.body = { success: true };
   }
 }

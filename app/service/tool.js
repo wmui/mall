@@ -41,10 +41,10 @@ class ToolService extends Service {
       lenna
         .resize(200, Jimp.AUTO)
         .quality(80)
-        .write(target + '_200x200' + path.extname(target));
+        .write(target + '_200' + path.extname(target));
       lenna.resize(400, Jimp.AUTO)
         .quality(80)
-        .write(target + '_400x400' + path.extname(target));
+        .write(target + '_400' + path.extname(target));
     });
   }
 
