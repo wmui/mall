@@ -52,7 +52,7 @@ module.exports = appInfo => {
     security: {
       csrf: {
         ignore: ctx => {
-          return [ '/admin/goods/upload' ].includes(ctx.request.url);
+          return [ '/admin/goods/upload', '/admin/status' ].includes(ctx.request.url);
         },
       },
     },

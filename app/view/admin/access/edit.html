@@ -20,9 +20,9 @@
       <div class="main-input">
         <span>节点类型</span>
         <select name="type">
-          <option value="1" {% if one.type === 1 %}selected{% endif %}>模块</option>
-          <option value="2" {% if one.type === 2 %}selected{% endif %}>菜单</option>
-          <option value="3" {% if one.type === 3 %}selected{% endif %}>操作</option>
+          {% for key, val in nodeType %}
+          <option value="{{ key }}" {{helper.selected(one.type, key)}}>{{ val }}</option>
+          {% endfor %}
         </select>
       </div>
       <div class="main-input">

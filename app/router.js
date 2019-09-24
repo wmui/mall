@@ -8,6 +8,8 @@ module.exports = app => {
   router.get('/', controller.home.index);
 
   router.get('/admin', controller.admin.main.index);
+  router.put('/admin/status', controller.admin.main.status);
+
   router.get('/admin/login', controller.admin.login.index);
   router.get('/admin/logout', controller.admin.login.logout);
   router.post('/admin/doLogin', controller.admin.login.doLogin);
@@ -67,4 +69,5 @@ module.exports = app => {
   router.post('/admin/goods/doEdit', controller.admin.goods.doEdit);
   router.get('/admin/goods/goodsTypeAttr', controller.admin.goods.goodsTypeAttr);
   router.post('/admin/goods/upload', controller.admin.goods.upload);
+
 };

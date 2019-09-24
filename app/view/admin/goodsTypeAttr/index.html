@@ -19,9 +19,19 @@
     <tr>
       <td>{{ item.title }}</td>
       <td>{{ item.goods_type[0].title }}</td>
-      <td>{{ helper.getMethod(item.attr_type) }}</td>
+      <td>{{ fieldType[item.attr_type] }}</td>
       <td>{{ item.attr_value }}</td>
-      <td>{{ helper.getStatus(item.status) }}</td>
+      {% if item.status == 1 %}
+      <td>
+        <span class="glyphicon glyphicon-ok"
+          onclick="handleChangeStatus(this, 'GoodsTypeAttr', '{{ item._id }}', 0)"></span>
+      </td>
+      {% else %}
+      <td>
+        <span class="glyphicon glyphicon-remove"
+          onclick="handleChangeStatus(this, 'GoodsTypeAttr', '{{ item._id }}', 1)"></span>
+      </td>
+      {% endif %}
       <td>
         <a href="/admin/goodsTypeAttr/edit?id={{item._id}}">修改</a>　
         <a href="/admin/delete?id={{item._id}}&model=GoodsTypeAttr" id="delete">删除</a>

@@ -16,7 +16,7 @@
     {% for item in list%}
     <tr class="active">
       <td>{{ item.module_name }}</td>
-      <td>{{ helper.getNodeName(item.type) }}</td>
+      <td>{{ nodeType[item.type] }}</td>
       <td>{{ item.action_name }}</td>
       <td>{{ item.url }}</td>
       <td>{{ item.sort }}</td>
@@ -29,7 +29,7 @@
     {% for node in item.items %}
     <tr>
       <td>&lfloor; {{ node.module_name }}</td>
-      <td>&lfloor;{{ helper.getNodeName(node.type) }}</td>
+      <td>&lfloor;{{ nodeType[node.type] }}</td>
       <td>&lfloor; {{ node.action_name }}</td>
       <td>&lfloor; {{ node.url }}</td>
       <td>&lfloor; {{ node.sort }}</td>

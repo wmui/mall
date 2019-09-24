@@ -3,7 +3,7 @@
 {% block layout %}
 <div class="panel panel-default">
   <div class="panel-heading">轮播图管理</div>
-  <table class="table">
+  <table class="table focus-list">
     <tr>
       <th>名称</th>
       <th>类型</th>
@@ -16,10 +16,19 @@
     {% for item in list%}
     <tr>
       <td>{{ item.title }}</td>
-      <td>{{ item.type }}</td>
+      <td>{{ focusType[item.type] }}</td>
       <td><img src="{{ item.focus_img }}" alt="" width="150px"></td>
       <td>{{ item.link }}</td>
-      <td>{{ item.status }}</td>
+      {% if item.status == 1 %}
+      <td>
+        <span class="glyphicon glyphicon-ok" onclick="handleChangeStatus(this, 'Focus', '{{ item._id }}', 0)"></span>
+      </td>
+      {% else %}
+      <td>
+        <span class="glyphicon glyphicon-remove"
+          onclick="handleChangeStatus(this, 'Focus', '{{ item._id }}', 1)"></span>
+      </td>
+      {% endif %}
       <td>{{ item.sort }}</td>
       <td>
         <a href="/admin/focus/edit?id={{item._id}}">修改</a>　

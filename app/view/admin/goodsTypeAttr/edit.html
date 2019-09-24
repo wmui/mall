@@ -26,10 +26,10 @@
 
       <div class="main-input">
         <span>录入方式</span>
-        <input type="radio" name="attr_type" value="1" {% if one.attr_type == 1 %}checked{% endif %}>单行文本框</input>
-        <input type="radio" name="attr_type" value="2" {% if one.attr_type==2 %}checked{% endif %}>多行文本框</input>
-        <input type="radio" name="attr_type" value="3" {% if one.attr_type==3 %}checked{% endif %}>下拉选择框
-        </option>
+        {% for key, val in fieldType %}
+        <input type="radio" name="attr_type" value="{{ key }}}"
+          {% if one.attr_type == key %}checked{% endif %}>{{ val }}</input>
+        {% endfor %}
       </div>
 
       <div class="main-input" id="attr_value">

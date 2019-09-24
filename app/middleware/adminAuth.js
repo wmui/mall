@@ -5,6 +5,21 @@ module.exports = () => {
     // 全局变量
     ctx.locals.prevPage = ctx.request.headers.referer;
     ctx.locals.csrf = ctx.csrf;
+    ctx.locals.focusType = {
+      1: '网站',
+      2: 'app',
+      3: '小程序',
+    };
+    ctx.locals.fieldType = {
+      1: '单行文本框',
+      2: '多行文本框',
+      3: '下拉选择框',
+    };
+    ctx.locals.nodeType = {
+      1: '模块',
+      2: '菜单',
+      3: '操作',
+    };
     // 无需鉴权的路由
     const ignorePath = [ '/admin/login', '/admin/doLogin', '/admin/verify' ];
     const pathname = url.parse(ctx.request.url).pathname;

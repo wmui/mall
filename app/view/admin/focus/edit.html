@@ -10,9 +10,9 @@
       <div class="main-input">
         <span>分类</span>
         <select name="type">
-          <option value="1" {% if one.type == 1 %}selected{% endif %}>网站</option>
-          <option value="2" {% if one.type == 2 %}selected{% endif %}>APP</option>
-          <option value="3" {% if one.type == 3 %}selected{% endif %}>小程序</option>
+          {% for key, val in focusType %}
+          <option value="{{ key }}" {{helper.selected(one.type, key)}}>{{ val }}</option>
+          {% endfor %}
         </select>
       </div>
 
@@ -29,7 +29,7 @@
 
       <div class="main-input">
         <span>轮播图</span>
-        <input type="file" name="one_img" class="form-control">
+        <input type="file" name="focus_img" class="form-control">
       </div>
 
       <img src="{{one.focus_img}}" alt="" width="150px">

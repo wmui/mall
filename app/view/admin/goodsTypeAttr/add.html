@@ -40,9 +40,9 @@
 
       <div class="main-input">
         <span>录入方式</span>
-        <input type="radio" name="attr_type" value="1" checked>单行文本框</input>
-        <input type="radio" name="attr_type" value="2">多行文本框</input>
-        <input type="radio" name="attr_type" value="3">下拉选择框</option>
+        {% for key, val in fieldType %}
+        <input type="radio" name="attr_type" value="{{ key }}}">{{ val }}</input>
+        {% endfor %}
       </div>
 
       <div class="main-input" id="attr_value">

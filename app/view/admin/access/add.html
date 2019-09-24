@@ -19,9 +19,9 @@
       <div class="main-input">
         <span>节点类型</span>
         <select name="type">
-          <option value="1">模块</option>
-          <option value="2">菜单</option>
-          <option value="3">操作</option>
+          {% for key, val in nodeType %}
+          <option value="{{ key }}">{{ val }}</option>
+          {% endfor %}
         </select>
       </div>
 

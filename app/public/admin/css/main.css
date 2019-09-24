@@ -45,6 +45,16 @@
   text-decoration: none;
 }
 
+.glyphicon-ok {
+  cursor: pointer;
+  color: green;
+}
+
+.glyphicon-remove {
+  cursor: pointer;
+  color: red;
+}
+
 /* reset */
 
 .navbar {
