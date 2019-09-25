@@ -3,21 +3,7 @@ const BaseController = require('./base');
 
 class GoodsCateController extends BaseController {
   async index() {
-    const list = await this.ctx.model.GoodsCate.aggregate([
-      {
-        $lookup: {
-          from: 'goods_cate',
-          localField: '_id',
-          foreignField: 'pid',
-          as: 'items',
-        },
-      },
-      {
-        $match: {
-          pid: '0',
-        },
-      },
-    ]);
+    const list = await this.ctx.service.goods.goodsCateList();
     await this.ctx.render('admin/goodsCate/index', { list });
   }
 
