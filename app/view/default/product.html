@@ -1,0 +1,37 @@
+{% extends "./public/layout.html" %}
+
+{% block layout %}
+<div class="row">
+  <div class="col-md-4">
+    <div id="carousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner" role="listbox">
+        {% for item in imgs %}
+        <div class="item {% if loop.first %}active{% endif %}">
+          <img src="{{item.img_url}}" alt="{{title}}">
+        </div>
+        {% endfor %}
+      </div>
+      <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <h3>{{ goods.title }}</h3>
+    <h4>{{ goods.sub_title}}</h4>
+    {{goods.goods_attrs}}
+    {% for item in attrs %}
+    <p>{{ item.title }}： {{item.attr_value}}</p>
+    {% endfor %}
+    <p>价格：￥{{ goods.shop_price }}</p>
+    <button class="btn btn-warning">加入购物车</button>
+    <button class="btn btn-danger">立即购买</button>
+  </div>
+</div>
+{% endblock %}

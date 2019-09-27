@@ -84,8 +84,6 @@ class GoodsController extends BaseController {
     let goods_type_attrs = [];
     const data = await this.ctx.model.GoodsTypeAttr.find({ cate_id });
     // find value data by edit
-    // TODO: edit goods is fail
-
     if (attrs) {
       const copyData = JSON.parse(JSON.stringify(data));
       goods_type_attrs = copyData.map(item => {
@@ -178,7 +176,7 @@ class GoodsController extends BaseController {
     const goods = await this.ctx.model.Goods.updateOne({ _id: body.id }, body).exec();
 
     // delete old attr data, then add new data
-    await this.ctx.model.GoodsAttr.deleteOne({ goods_id: body.id });
+    await this.ctx.model.GoodsAttr.deleteMany({ goods_id: body.id });
     goods && await this.goodsOther(body);
     await this.success('/admin/goods', '编辑商品成功');
   }
