@@ -11,4 +11,7 @@ module.exports = {
     const a = arr.map(i => i.toString());
     return a.includes(val.toString()) ? 'checked' : '';
   },
+  page(number) {
+    return Array(+number).fill('');
+  },
 };

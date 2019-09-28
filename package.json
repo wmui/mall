@@ -16,6 +16,7 @@
     "egg-view-nunjucks": "^2.2.0",
     "jimp": "^0.8.2",
     "md5": "^2.2.1",
+    "mongoose-paginate": "^5.0.3",
     "mz-modules": "^2.1.0",
     "svg-captcha": "^1.4.0"
   },

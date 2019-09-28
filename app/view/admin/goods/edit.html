@@ -20,6 +20,7 @@
 
 <form action="/admin/goods/doEdit?_csrf={{csrf}}" method="post" enctype="multipart/form-data">
   <input type="hidden" name="id" value="{{one._id}}">
+  <input type="hidden" name="prev_page" value="{{prev_page}}">
   <div class="panel panel-default">
     <div class="panel-heading">编辑商品</div>
     <div class="panel-body">

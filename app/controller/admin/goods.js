@@ -133,9 +133,11 @@ class GoodsController extends BaseController {
     });
     return str;
   }
+
   async index() {
-    const list = await this.ctx.model.Goods.find();
-    await this.ctx.render('admin/goods/index', { list });
+    const { page = 1, limit = 1 } = this.ctx.query;
+    const { docs, ...rest } = await this.ctx.model.Goods.paginate({}, { page, limit });
+    await this.ctx.render('admin/goods/index', { list: docs, pagination: { ...rest } });
   }
 
   async add() {
@@ -168,6 +170,7 @@ class GoodsController extends BaseController {
       goods_color,
       goods_type_attrs,
       ...data,
+      prev_page: this.ctx.locals.prevPage,
     });
   }
   async doEdit() {
@@ -178,7 +181,7 @@ class GoodsController extends BaseController {
     // delete old attr data, then add new data
     await this.ctx.model.GoodsAttr.deleteMany({ goods_id: body.id });
     goods && await this.goodsOther(body);
-    await this.success('/admin/goods', '编辑商品成功');
+    await this.success(body.prev_page, '编辑商品成功');
   }
   async upload() {
     const body = await this.service.tool.getUploadFile(true);

@@ -1,4 +1,6 @@
 'use strict';
+const mongoosePaginate = require('mongoose-paginate');
+
 module.exports = app => {
   const mongoose = app.mongoose;
   const Schema = mongoose.Schema;
@@ -107,6 +109,7 @@ module.exports = app => {
     },
   });
 
+  GoodsSchema.plugin(mongoosePaginate);
   return mongoose.model('Goods', GoodsSchema, 'goods');
 
 };
