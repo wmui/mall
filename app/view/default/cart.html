@@ -2,8 +2,9 @@
 
 {% block layout %}
 
-<table class="table">
+{% if list.length %}
 
+<table class="table">
   <tr>
     <th>缩略图</th>
     <th>商品名</th>
@@ -12,7 +13,6 @@
   </tr>
 
   {% for item in list %}
-
   <tr>
     <td>
       <img src="{{item.goods_img }}" alt="" width="50">
@@ -23,6 +23,13 @@
   </tr>
   {% endfor %}
 </table>
-
 <button class="btn btn-danger">去结算</button>
+
+{% else %}
+
+<h3>购物车空空如也</h3>
+
+<button class="btn btn-danger"><a href="/">去逛逛</a></button>
+
+{% endif %}
 {% endblock %}

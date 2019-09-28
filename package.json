@@ -18,6 +18,7 @@
     "md5": "^2.2.1",
     "mongoose-paginate": "^5.0.3",
     "mz-modules": "^2.1.0",
+    "qcloudsms_js": "^0.1.1",
     "svg-captcha": "^1.4.0"
   },
   "devDependencies": {

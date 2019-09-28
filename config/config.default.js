@@ -53,7 +53,11 @@ module.exports = appInfo => {
     security: {
       csrf: {
         ignore: ctx => {
-          return [ '/admin/goods/upload', '/admin/status' ].includes(ctx.request.url);
+          return [
+            '/admin/goods/upload',
+            '/admin/status',
+            '/sendMsg',
+          ].includes(ctx.request.url);
         },
       },
     },
@@ -64,6 +68,12 @@ module.exports = appInfo => {
         password: '',
         db: 0, // TODO: why is zero
       },
+    },
+    sms: { // https://cloud.tencent.com/document/product/382/3772
+      appId: '1400263664',
+      appKey: '754e26c86aae4a100085c935168757e',
+      templateId: '433528',
+      smsSign: '居享',
     },
   };
 

@@ -61,6 +61,15 @@ class HomeController extends Controller {
 
     await this.ctx.render('default/cart', { list });
   }
+
+  async register() {
+    await this.ctx.render('default/register');
+  }
+
+  async sendMsg() {
+    this.service.tool.sendMsg();
+    this.ctx.body = { success: true };
+  }
 }
 
 module.exports = HomeController;

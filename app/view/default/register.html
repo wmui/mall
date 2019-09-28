@@ -1,0 +1,28 @@
+{% extends "./public/layout.html" %}
+
+{% block layout %}
+
+<button id="btn">发送</button>
+
+{% endblock %}
+
+{% block script %}
+<script>
+  $(function () {
+    $('#btn').click(function () {
+      $.ajax({
+        method: 'post',
+        url: '/sendMsg',
+        data: {
+          phone: ''
+        },
+        success: function (res) {
+          console.log(res);
+
+        }
+      })
+    })
+  })
+
+</script>
+{% endblock %}

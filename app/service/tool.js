@@ -7,6 +7,7 @@ const mkdirp = require('mz-modules/mkdirp');
 const fs = require('fs');
 const pump = require('mz-modules/pump');
 const Jimp = require('jimp');
+const QcloudSms = require('qcloudsms_js');
 class ToolService extends Service {
   async captcha() {
     const captcha = svgCaptcha.create({
@@ -69,6 +70,24 @@ class ToolService extends Service {
 
   objectId(id) {
     return this.app.mongoose.Types.ObjectId(id);
+  }
+
+  sendMsg(phone, code) {
+    const { appId, appKey, templateId, smsSign } = this.config.sms;
+    const qcloudsms = QcloudSms(appId, appKey);
+    const ssender = qcloudsms.SmsSingleSender();
+    const params = [ code, '3' ];
+    function callback(err, res, resData) {
+      if (err) {
+        console.log('err: ', err);
+      } else {
+        console.log('request data: ', res.req);
+        console.log('response data: ', resData);
+      }
+    }
+
+    ssender.sendWithParam('86', phone, templateId,
+      params, smsSign, '', '', callback); // 倒数第二个是ext参数（可以通过resData.ext获取），倒数第三个应该是废弃的extend参数
   }
 }
 
