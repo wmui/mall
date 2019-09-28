@@ -30,8 +30,20 @@
     <p>{{ item.title }}： {{item.attr_value}}</p>
     {% endfor %}
     <p>价格：￥{{ goods.shop_price }}</p>
-    <button class="btn btn-warning">加入购物车</button>
+    <button class="btn btn-warning" id="add_cart_btn" data-goods-id="{{goods._id}}">加入购物车</button>
     <button class="btn btn-danger">立即购买</button>
   </div>
 </div>
+{% endblock %}
+
+{% block script%}
+<script>
+  $(function () {
+    $('#add_cart_btn').click(function () {
+      var id = $(this).attr('data-goods-id')
+      location.href = '/doCart?id=' + id
+    })
+  })
+
+</script>
 {% endblock %}
