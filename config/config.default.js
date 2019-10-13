@@ -57,6 +57,7 @@ module.exports = appInfo => {
             '/admin/goods/upload',
             '/admin/status',
             '/sendMsg',
+            '/register/verifyPhoneCode',
           ].includes(ctx.request.url);
         },
       },

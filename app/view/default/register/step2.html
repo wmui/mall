@@ -1,0 +1,68 @@
+{% extends "../public/layout.html" %}
+
+{% block layout %}
+
+<div class="reg">
+  <div class="panel panel-default reg">
+    <div class="panel-heading">
+      <h3 class="panel-title">注册</h3>
+    </div>
+    <div class="panel-body">
+      <p>验证码已通过短信发送至您的手机，请输入完成验证。手机绑定是为保障用户的信息真实性和帐号安全性</p>
+
+      <div class="input-group">
+        <input type="hidden" name="sign" value="{{sign}}" id="sign">
+        <input type="hidden" name="user_code" value="{{user_code}}" id="user_code">
+        <input type="hidden" name="phone" value="{{phone}}" id="phone">
+        <input type="text" id="phone_code" class="form-control" placeholder="">
+
+        <span class="input-group-addon">
+          <button id="code_btn" class="btn">重新发送验证码</button>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" id="btn">下一步</button>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+  // TODO: 延时处理
+  var sign = $('#sign').val();
+  var phone = $('#phone').val();
+  var user_code = $('#user_code').val();
+
+  $('#code_btn').click(function () {
+    $.ajax({
+      method: 'post',
+      url: '/sendMsg',
+      data: {
+        phone,
+        user_code,
+      },
+      success: function (res) {
+        if (!res.success) return alert(res.error.message);
+        alert('发送成功')
+      }
+    })
+  })
+
+  $('#btn').click(function () {
+    var phone_code = $('#phone_code').val();
+    $.ajax({
+      method: 'post',
+      url: '/register/verifyPhoneCode',
+      data: {
+        phone_code,
+      },
+      success: function (res) {
+        if (!res.success) return alert('验证码错误');
+        location.href = '/register/step3?sign=' + sign + '&phone_code=' + phone_code
+      }
+    })
+  })
+
+</script>
+{% endblock %}

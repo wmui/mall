@@ -1,0 +1,48 @@
+{% extends "../public/layout.html" %}
+
+{% block layout %}
+
+<div class="reg">
+  <div class="panel panel-default reg">
+    <div class="panel-heading">
+      <h3 class="panel-title">注册</h3>
+    </div>
+    <div class="panel-body">
+
+      <input type="text" id="phone" class="form-control" placeholder="手机号">
+
+      <div class="input-group">
+        <input type="text" id="user_code" class="form-control" placeholder="验证码">
+
+        <span class="input-group-addon">
+          <img src="/verify" title="看不清？点击刷新" onclick="javascript:this.src='/verify?mt='+Math.random()">
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" id="btn">下一步</button>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+  $('#btn').click(function () {
+    var phone = $('#phone').val();
+    var user_code = $('#user_code').val();
+    $.ajax({
+      method: 'post',
+      url: '/sendMsg',
+      data: {
+        phone,
+        user_code
+      },
+      success: function (res) {
+        if (!res.success) return alert(res.error.message)
+        location.href = '/register/step2?sign=' + res.data.sign + '&user_code=' + user_code;
+      },
+    })
+  })
+
+</script>
+{% endblock %}

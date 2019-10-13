@@ -20,7 +20,8 @@ class BaseController extends Controller {
   async verify() {
     const captcha = await this.service.tool.captcha();
     this.ctx.response.type = 'image/svg+xml';
-    this.ctx.body = captcha.data;
+    this.ctx.session.code = captcha.text; // 文本
+    this.ctx.body = captcha.data; // 图片
   }
 
   async delete() {

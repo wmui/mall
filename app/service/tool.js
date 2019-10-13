@@ -19,9 +19,11 @@ class ToolService extends Service {
       background: '#cc9966',
     });
 
-    this.ctx.session.code = captcha.text;
-
     return captcha;
+  }
+
+  async getDay() {
+    return dayjs().format('YYYYMMDD');
   }
 
   async createFolder(filename) {
@@ -72,14 +74,14 @@ class ToolService extends Service {
     return this.app.mongoose.Types.ObjectId(id);
   }
 
-  sendMsg(phone, code) {
+  async sendMsg(phone, code) {
     const { appId, appKey, templateId, smsSign } = this.config.sms;
     const qcloudsms = QcloudSms(appId, appKey);
     const ssender = qcloudsms.SmsSingleSender();
     const params = [ code, '3' ];
     function callback(err, res, resData) {
       if (err) {
-        console.log('err: ', err);
+        // console.log('err: ', err);
       } else {
         console.log('request data: ', res.req);
         console.log('response data: ', resData);

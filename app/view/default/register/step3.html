@@ -1,0 +1,45 @@
+{% extends "../public/layout.html" %}
+
+{% block layout %}
+
+<div class="reg">
+  <form action="/register?_csrf={{csrf}}" method="post">
+    <div class="panel panel-default reg">
+      <div class="panel-heading">
+        <h3 class="panel-title">注册</h3>
+      </div>
+      <div class="panel-body">
+        <input type="hidden" name="sign" value="{{sign}}">
+        <input type="hidden" name="phone_code" value="{{phone_code}}">
+
+        <input type="password" id="password" name="password" class="form-control" placeholder="请输入密码">
+
+        <input type="password" id="rpassword" name="rpassword" class="form-control" placeholder="请再次输入密码">
+      </div>
+    </div>
+
+    <button class="btn btn-primary" id="btn" type="submit">注册</button>
+  </form>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+  $('#btn').click(function () {
+    var password = $('#password').val();
+    var rpassword = $('#rpassword').val();
+
+    if (!password || !rpassword) {
+      return false
+    }
+
+    if (password !== rpassword) {
+      alert('密码不一致')
+      return false
+    }
+
+    return true
+  })
+
+</script>
+{% endblock %}

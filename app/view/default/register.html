@@ -2,8 +2,33 @@
 
 {% block layout %}
 
-<button id="btn">发送</button>
+<div class="reg">
+  <div class="panel panel-default reg">
+    <div class="panel-heading">
+      <h3 class="panel-title">注册</h3>
+    </div>
+    <div class="panel-body">
 
+      <input type="text" name="phone" class="form-control" placeholder="手机号">
+
+      <div class="input-group">
+        <input type="text" name="user_code" class="form-control" placeholder="验证码">
+
+        <span class="input-group-addon">
+          <img src="/verify" title="看不清？点击刷新" onclick="javascript:this.src='/verify?mt='+Math.random()">
+        </span>
+      </div>
+
+      <div class="input-group">
+        <input type="text" name="user_code" class="form-control" placeholder="手机验证码">
+
+        <span class="input-group-addon">
+          <img src="/verify" title="看不清？点击刷新" onclick="javascript:this.src='/verify?mt='+Math.random()">
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 
 {% block script %}

@@ -4,11 +4,18 @@ module.exports = app => {
   // const initMiddleware = app.middleware.init({}, app);
   router.get('/', controller.default.home.index);
   router.get('/list', controller.default.home.list);
-  router.get('/product', controller.default.home.product);
-  router.get('/cart', controller.default.home.cart);
-  router.get('/doCart', controller.default.home.doCart);
-  router.get('/cartSuccess', controller.default.home.cartSuccess);
 
-  router.get('/register', controller.default.home.register);
-  router.post('/sendMsg', controller.default.home.sendMsg);
+  router.get('/product', controller.default.product.index);
+
+  router.get('/cart', controller.default.cart.index);
+  router.get('/doCart', controller.default.cart.doCart);
+  router.get('/cartSuccess', controller.default.cart.cartSuccess);
+
+  router.get('/register/step1', controller.default.user.step1);
+  router.get('/register/step2', controller.default.user.step2);
+  router.get('/register/step3', controller.default.user.step3);
+  router.get('/verify', controller.default.user.verify);
+  router.post('/sendMsg', controller.default.user.sendMsg);
+  router.post('/register', controller.default.user.doRegister);
+  router.post('/register/verifyPhoneCode', controller.default.user.verifyPhoneCode);
 };

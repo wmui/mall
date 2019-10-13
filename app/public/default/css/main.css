@@ -1,1 +1,12 @@
+.reg {
+  width: 300px;
+  margin: 50px auto;
+}
 
+.reg input {
+  margin-bottom: 20px;
+}
+
+.reg .input-group-addon {
+  padding: 0;
+}
