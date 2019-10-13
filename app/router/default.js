@@ -17,5 +17,9 @@ module.exports = app => {
   router.get('/verify', controller.default.user.verify);
   router.post('/sendMsg', controller.default.user.sendMsg);
   router.post('/register', controller.default.user.doRegister);
+  router.get('/login', controller.default.user.login);
+  router.post('/doLogin', controller.default.user.doLogin);
+  router.get('/logout', controller.default.user.doLogout);
+
   router.post('/register/verifyPhoneCode', controller.default.user.verifyPhoneCode);
 };

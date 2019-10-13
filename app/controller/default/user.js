@@ -113,7 +113,7 @@ class UserController extends Controller {
       this.ctx.validate({
         password: { type: 'string', min: 6, max: 15 },
         rpassword: { type: 'string', min: 6, max: 15, compare: 'password' },
-        phone_code: [ ctx.session.phone_code ],
+        phone_code: [ctx.session.phone_code],
       }, ctx.request.body);
 
       let user = await new this.ctx.model.User({
@@ -130,6 +130,31 @@ class UserController extends Controller {
     } catch (error) {
       this.ctx.redirect('/register/step3', { message: error.message || 'error' });
     }
+  }
+
+  async doLogout() {
+    this.service.cookie.set('userinfo', '');
+
+    this.ctx.redirect('/');
+  }
+
+  async doLogin() {
+    const { username, password, user_code } = this.ctx.request.body;
+
+    // TODO: why cant append query
+    if (user_code !== this.ctx.session.user_code) {
+      return this.ctx.redirect('/login');
+    }
+    const user = await this.ctx.model.User.findOne({ phone: username, password });
+    if (!user) {
+      return this.ctx.redirect('/login');
+    }
+    this.ctx.service.cookie.set('userinfo', user);
+    this.ctx.redirect('/');
+  }
+
+  async login() {
+    await this.ctx.render('/default/login');
   }
 }
 
