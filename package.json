@@ -7,6 +7,8 @@
     "declarations": true
   },
   "dependencies": {
+    "alipay-mobile": "^3.0.9",
+    "crypto": "^1.0.1",
     "dayjs": "^1.8.16",
     "egg": "^2.15.1",
     "egg-mongoose": "^3.2.0",
@@ -20,7 +22,11 @@
     "mongoose-paginate": "^5.0.3",
     "mz-modules": "^2.1.0",
     "qcloudsms_js": "^0.1.1",
-    "svg-captcha": "^1.4.0"
+    "qr-image": "^3.2.0",
+    "querystring": "^0.2.0",
+    "request": "^2.88.0",
+    "svg-captcha": "^1.4.0",
+    "xml2js": "^0.4.22"
   },
   "devDependencies": {
     "autod": "^3.0.1",
