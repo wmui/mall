@@ -15,7 +15,7 @@ class WeixinPayService extends Service {
         out_trade_no: order.out_trade_no, //订单号
         attach: order.title,
         body: order.title,
-        total_fee: (order.price).toString(), // 此处的额度为分
+        total_fee: (order.price * 100).toString(), // 此处的额度为分
         spbill_create_ip: this.ctx.request.ip.replace(/::ffff:/, ''),
       }, (error, result) => {
         if (error) reject(error);
