@@ -2,6 +2,8 @@
 module.exports = app => {
   const { router, controller } = app;
   // const initMiddleware = app.middleware.init({}, app);
+  // const userAuth = app.middleware.userAuth;
+
   router.get('/', controller.default.home.index);
   router.get('/list', controller.default.home.list);
 

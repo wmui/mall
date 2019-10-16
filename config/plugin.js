@@ -22,4 +22,12 @@ module.exports = {
     enable: true,
     package: 'egg-validate',
   },
+  cors: {
+    enable: true,
+    package: 'egg-cors',
+  },
+  elasticsearch: {
+    enable: true, // must boot es service with local
+    package: 'egg-es',
+  },
 };

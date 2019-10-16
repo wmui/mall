@@ -5,11 +5,11 @@ const Alipay = require('alipay-mobile');
 class AlipayService extends Service {
   async doPay(order) {
     return new Promise((resolve, reject) => {
-      const service = new Alipay(this.config.alipay)
+      const service = new Alipay(this.config.alipay);
       service.createPageOrderURL(order, this.config.alipayParams).then(result => {
         resolve(result.data); // pay url
-      })
-    })
+      });
+    });
   }
 
   async alipayNotify(params) {
