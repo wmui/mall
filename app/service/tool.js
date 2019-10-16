@@ -8,6 +8,7 @@ const fs = require('fs');
 const pump = require('mz-modules/pump');
 const Jimp = require('jimp');
 const QcloudSms = require('qcloudsms_js');
+const qr = require('qr-image');
 class ToolService extends Service {
   async captcha() {
     const captcha = svgCaptcha.create({
@@ -90,6 +91,10 @@ class ToolService extends Service {
 
     ssender.sendWithParam('86', phone, templateId,
       params, smsSign, '', '', callback); // 倒数第二个是ext参数（可以通过resData.ext获取），倒数第三个应该是废弃的extend参数
+  }
+
+  async qrImage(url) {
+    return qr.image(url, { type: 'png'})
   }
 }
 
