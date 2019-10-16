@@ -65,6 +65,8 @@ module.exports = appInfo => {
             '/admin/status',
             '/sendMsg',
             '/register/verifyPhoneCode',
+            '/alipay/notify',
+            '/weixinpay/notify',
           ].includes(ctx.request.url) || ctx.request.url.includes('/api');
         },
       },

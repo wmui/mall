@@ -2,11 +2,14 @@
 
 const Service = require('egg').Service;
 const Alipay = require('alipay-mobile');
+
 class AlipayService extends Service {
   async doPay(order) {
-    return new Promise((resolve, reject) => {
-      const service = new Alipay(this.config.alipay);
-      service.createPageOrderURL(order, this.config.alipayParams).then(result => {
+    return new Promise(resolve => {
+      const opt = this.config.alipay;
+      const params = this.config.alipayParams;
+      const service = new Alipay(opt);
+      service.createPageOrderURL(order, params).then(result => {
         resolve(result.data); // pay url
       });
     });

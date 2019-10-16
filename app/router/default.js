@@ -2,8 +2,8 @@
 module.exports = app => {
   const { router, controller } = app;
   // const initMiddleware = app.middleware.init({}, app);
-  // const userAuth = app.middleware.userAuth;
-
+  // const userAuth = app.middleware.userAuth();
+  const xmlParser = app.middleware.xmlParser();
   router.get('/', controller.default.home.index);
   router.get('/list', controller.default.home.list);
 
@@ -24,4 +24,12 @@ module.exports = app => {
   router.get('/logout', controller.default.user.doLogout);
 
   router.post('/register/verifyPhoneCode', controller.default.user.verifyPhoneCode);
+
+  router.get('/alipay/pay', xmlParser, controller.default.alipay.pay);
+  router.get('/alipay/return', controller.default.alipay.alipayReturn);
+  router.post('/alipay/notify', controller.default.alipay.alipayNotify);
+
+  router.get('/weixinpay/pay', controller.default.weixinPay.pay);
+
+  router.post('/weixinpay/notify', xmlParser, controller.default.weixinPay.weixinPayNotify);
 };

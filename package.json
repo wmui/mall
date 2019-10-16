@@ -7,7 +7,7 @@
     "declarations": true
   },
   "dependencies": {
-    "alipay-mobile": "^3.0.9",
+    "alipay-mobile": "^2.2.7",
     "crypto": "^1.0.1",
     "dayjs": "^1.8.16",
     "egg": "^2.15.1",
@@ -21,6 +21,7 @@
     "egg-view-nunjucks": "^2.2.0",
     "elasticsearch": "^16.4.0",
     "jimp": "^0.8.2",
+    "koa-xml-body": "^2.1.0",
     "md5": "^2.2.1",
     "mongoose-paginate": "^5.0.3",
     "mz-modules": "^2.1.0",
